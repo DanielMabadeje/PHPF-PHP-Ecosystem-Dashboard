@@ -15,27 +15,34 @@ MAX_BYTES="${MAX_BYTES_BILLED:-300000000000}"
 PROJECT_FLAG=()
 [ -n "${GCP_PROJECT:-}" ] && PROJECT_FLAG=(--project_id="$GCP_PROJECT")
 
+echo "mode=$MODE dates=$DATES"
+
 # query name -> needs the shared preamble?
 declare -A PREAMBLE=( [totals]=1 [platforms]=1 [families]=0 )
 
 for date in $DATES; do
   for q in totals platforms families; do
-    sql="$(cat extractions/sql/$q.sql)"
-    [ "${PREAMBLE[$q]}" = "1" ] && sql="$(cat extractions/sql/_preamble.sql)"$'\n'"$sql"
+    sqlfile="$(mktemp)"
+    [ "${PREAMBLE[$q]}" = "1" ] && cat extractions/sql/_preamble.sql >> "$sqlfile"
+    cat "extractions/sql/$q.sql" >> "$sqlfile"
     out="data/httparchive/$q/$date.csv"
+
+    # SQL goes in on stdin, never as an argument: it starts with "--" comments,
+    # which bq would otherwise parse as flags.
     if [ "$MODE" = "dry" ]; then
       echo "== $q @ $date"
-      printf '%s\n' "$sql" | bq "${PROJECT_FLAG[@]}" --quiet query --use_legacy_sql=false --dry_run \
-         --parameter="crawl_date:DATE:$date"
+      bq "${PROJECT_FLAG[@]}" --quiet query --use_legacy_sql=false --dry_run \
+         --parameter="crawl_date:DATE:$date" < "$sqlfile"
     else
       echo "== $q @ $date -> $out"
-      printf '%s\n' "$sql" | bq "${PROJECT_FLAG[@]}" --quiet --format=csv query --use_legacy_sql=false \
+      bq "${PROJECT_FLAG[@]}" --quiet --format=csv query --use_legacy_sql=false \
          --max_rows=1000 --maximum_bytes_billed="$MAX_BYTES" \
-         --parameter="crawl_date:DATE:$date" > "$out.tmp"
+         --parameter="crawl_date:DATE:$date" < "$sqlfile" > "$out.tmp"
       # fail loudly on empty results rather than commit a header-only file
-      [ "$(wc -l < "$out.tmp")" -ge 2 ] || { echo "empty result for $q @ $date" >&2; rm -f "$out.tmp"; exit 1; }
+      [ "$(wc -l < "$out.tmp")" -ge 2 ] || { echo "empty result for $q @ $date" >&2; rm -f "$out.tmp" "$sqlfile"; exit 1; }
       mv "$out.tmp" "$out"
     fi
+    rm -f "$sqlfile"
   done
 done
 
