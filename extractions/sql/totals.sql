@@ -1,19 +1,19 @@
--- Query 1: totals. Parameter: @crawl_date (DATE)
-WITH sites AS (
+-- Query 1: totals per crawl. Parameter: @crawl_date (DATE). Needs _preamble.sql.
+, sites AS (
   SELECT
     root_page,
-    LOGICAL_OR(t.technology = 'PHP')              AS php_detected,
-    LOGICAL_OR(t.technology IN UNNEST(php_apps))  AS php_app,
-    LOGICAL_OR('CMS' IN UNNEST(t.categories))     AS is_cms,
+    LOGICAL_OR(t.technology = 'PHP')                         AS php_detected,
+    LOGICAL_OR(t.technology IN UNNEST(params.php_apps))      AS php_app,
+    LOGICAL_OR('CMS' IN UNNEST(t.categories))                AS is_cms,
     LOGICAL_OR('Ecommerce' IN UNNEST(t.categories)
-               AND t.technology NOT IN UNNEST(not_a_platform)) AS is_shop,
+               AND t.technology NOT IN UNNEST(params.not_a_platform)) AS is_shop,
     LOGICAL_OR('Ecommerce' IN UNNEST(t.categories)
-               AND t.technology NOT IN UNNEST(not_a_platform)
-               AND t.technology NOT IN UNNEST(builder_commerce)) AS is_shop_strict,
-    LOGICAL_OR(t.technology = 'WordPress')            AS wordpress,
-    LOGICAL_OR(t.technology = 'WooCommerce')          AS woocommerce,
-    LOGICAL_OR(t.technology = 'EasyDigitalDownloads') AS edd
-  FROM `httparchive.crawl.pages`, UNNEST(technologies) AS t
+               AND t.technology NOT IN UNNEST(params.not_a_platform)
+               AND t.technology NOT IN UNNEST(params.builder_commerce)) AS is_shop_strict,
+    LOGICAL_OR(t.technology = 'WordPress')                   AS wordpress,
+    LOGICAL_OR(t.technology = 'WooCommerce')                 AS woocommerce,
+    LOGICAL_OR(t.technology = 'EasyDigitalDownloads')        AS edd
+  FROM `httparchive.crawl.pages`, UNNEST(technologies) AS t, params
   WHERE date = @crawl_date
     AND client = 'mobile'
     AND is_root_page
@@ -44,4 +44,4 @@ SELECT
   COUNTIF(woocommerce AND edd)                        AS both,
   COUNTIF(woocommerce AND NOT wordpress)              AS woocommerce_without_wordpress,
   COUNTIF(edd AND NOT wordpress)                      AS edd_without_wordpress
-FROM sites;
+FROM sites

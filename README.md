@@ -142,7 +142,9 @@ npm run dev                   # http://localhost:3000, with the base path from e
    - Filter on `date = @crawl_date`, `client = 'mobile'` and `is_root_page`, as in the existing queries, so the same query can run for every crawl date.
    - Include `@crawl_date AS crawl_date` as the first output column. The dashboard uses it as the time axis.
    - Return a **small aggregate** (tens to hundreds of rows), never raw rows. Add a `LIMIT` where the output could grow.
-   - If you need the shared PHP application list (`php_apps`, `not_a_platform`, `builder_commerce`), use `_preamble.sql` (see next step). Otherwise declare variables inside the file.
+   - **Write a single statement.** Do not use `DECLARE`, `CREATE TEMP ...` or multiple statements. BigQuery treats those as a *script*, and `bq` does not hand back a script's final `SELECT` as the CSV we need. Use CTEs (`WITH ... AS`) for lists and intermediate steps instead. The runner rejects any output whose first column is not `crawl_date`, so this fails loudly rather than committing a broken file.
+   - If you need the shared PHP application list, register the query with preamble flag `1` (see next step). The preamble is a `WITH params AS (...)` clause, so your query either starts with `, name AS (` to continue the WITH, or starts directly with `SELECT`. Reference the lists by joining `params` in your `FROM` (`FROM ..., params`) and using `params.php_apps`, `params.not_a_platform` or `params.builder_commerce`. See `totals.sql` and `platforms.sql`.
+   - Otherwise (flag `0`) the file must be complete on its own; see `families.sql`.
 2. **Register it** with one line in `scripts/queries.sh`:
    ```bash
    "php_versions|0|php_versions"
@@ -159,7 +161,8 @@ npm run dev                   # http://localhost:3000, with the base path from e
    <LineChart data={versions} x=crawl_date y=share />
    ````
    Preview with `./scripts/combine.sh && cd dashboard && npm run dev`.
-6. Commit the SQL, `queries.sh` and page. Data and deploy follow from the merged PR.
+6. **Explain every chart.** Each section of a page should say, in plain language: *the question it answers*, *what the chart shows and how to read it*, and *caveats* (what it does not mean, known detection gaps, double counting). A heading alone, such as "WordPress family", does not tell a reader what they are looking at. `dashboard/pages/php-applications.md` is the pattern to copy.
+7. Commit the SQL, `queries.sh` and page. Data and deploy follow from the merged PR.
 
 Notes:
 - Queries must be written so that the same file works for every crawl date. If a query needs a different shape per date, split it into two queries.
@@ -176,6 +179,10 @@ These do not go through BigQuery, so they need their own script and workflow:
 3. Add a workflow like `refresh.yml` (manual and/or scheduled, opening a PR). Sampling scripts should seed their randomness and store the seed so results can be reproduced.
 4. Add a second Evidence source folder (e.g. `dashboard/sources/github/`) with `connection.yaml` of `type: csv`, and a page that queries it.
 
+## Branding
+
+The header shows the title and repository link set in `dashboard/pages/+layout.svelte`. Without that file Evidence shows its own logo. To use an image logo instead, put the file in `dashboard/static/` and pass it to the layout, for example `logo="/my-logo.png"` (or `lightLogo` / `darkLogo` for separate light and dark versions). An image overrides the text title. The browser tab title comes from the `title:` line at the top of each page.
+
 ## Data conventions
 
 - The queries cover **mobile client, root pages only**. Counts are sites, not pages.
@@ -190,6 +197,7 @@ These do not go through BigQuery, so they need their own script and workflow:
 | `npm install` fails with `ERESOLVE ... typescript@7` | npm picked TypeScript 7, which Evidence's `svelte2tsx` does not accept. Run `npm install -D typescript@5`. Fallback: `echo "legacy-peer-deps=true" > dashboard/.npmrc` and commit it. |
 | `evidence: command not found` | The install failed. Fix the install first. |
 | `bq` crashes with `RecursionError` in `get_flag_suggestions` | The SQL was passed to `bq` as an argument and its leading `--` comment was parsed as a flag. `run_httparchive.sh` pipes SQL on stdin; make sure you are on a version that does. |
+| Dashboard charts show `Binder Error: Referenced column "crawl_date" not found`, with a column named like `WITH sites AS (` | The committed CSV does not contain the query result. This happened when queries used `DECLARE`, which makes BigQuery run them as scripts. Rewrite the query as a single statement (CTEs, no `DECLARE`), re-run the refresh and merge the new data PR. The runner now rejects such output. |
 | Workflow authenticates but queries fail on the project | `GCP_PROJECT` must be the **project ID** (`phpf-ecosystem-dashboard`), not the service account email. |
 | Queries stop with "bytes billed exceeds limit" | `MAX_BYTES_BILLED` is lower than the query's scan size. Raise it after checking a dry run. |
 | Refresh succeeds but no PR appears | Enable "Allow GitHub Actions to create and approve pull requests" in Settings -> Actions -> General. The `data-refresh` branch already exists; open the PR from it manually. |

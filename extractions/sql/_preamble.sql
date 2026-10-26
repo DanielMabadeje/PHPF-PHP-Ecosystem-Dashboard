@@ -1,15 +1,21 @@
--- Shared declarations, prepended to totals.sql and platforms.sql by run_httparchive.sh.
--- Hand-written list: reproduces the Web Almanac figures (see extraction doc).
-DECLARE php_apps ARRAY<STRING> DEFAULT [
-  'WordPress', 'WooCommerce', 'Drupal', 'Joomla', 'Magento', 'PrestaShop',
-  'OpenCart', 'TYPO3 CMS', 'Shopware', 'Concrete CMS', 'MODX', 'Contao',
-  'SPIP', 'OXID eShop', 'CS Cart', 'osCommerce', 'X-Cart', 'CubeCart',
-  'Pimcore', 'Silverstripe', 'ExpressionEngine', 'DataLife Engine',
-  '1C-Bitrix', 'Grav', 'Statamic', 'Textpattern CMS', 'e107', 'XOOPS',
-  'Weebly', 'Shoptet', 'Craft CMS', 'Square Online',
-  'Gnuboard', 'October CMS', 'Backdrop', 'ProcessWire', 'EC-CUBE',
-  'Hyva Themes', 'Gambio', 'EasyDigitalDownloads'];
-DECLARE not_a_platform ARRAY<STRING> DEFAULT [
-  'Cart Functionality', 'Google Analytics Enhanced eCommerce'];
-DECLARE builder_commerce ARRAY<STRING> DEFAULT [
-  'Squarespace Commerce', 'Wix eCommerce'];
+-- Shared lists, prepended to queries flagged "1" in scripts/queries.sh.
+-- Queries using this must continue the WITH clause (start with ", name AS (") or
+-- start directly with SELECT, and join the lists with `, params` in their FROM.
+-- No DECLARE / CREATE TEMP: those make BigQuery treat the query as a script, and
+-- `bq` does not return a script's final SELECT as the CSV we need.
+WITH params AS (
+  SELECT
+    -- Hand-written list: reproduces the Web Almanac figures (see the extraction doc).
+    [
+      'WordPress', 'WooCommerce', 'Drupal', 'Joomla', 'Magento', 'PrestaShop',
+      'OpenCart', 'TYPO3 CMS', 'Shopware', 'Concrete CMS', 'MODX', 'Contao',
+      'SPIP', 'OXID eShop', 'CS Cart', 'osCommerce', 'X-Cart', 'CubeCart',
+      'Pimcore', 'Silverstripe', 'ExpressionEngine', 'DataLife Engine',
+      '1C-Bitrix', 'Grav', 'Statamic', 'Textpattern CMS', 'e107', 'XOOPS',
+      'Weebly', 'Shoptet', 'Craft CMS', 'Square Online',
+      'Gnuboard', 'October CMS', 'Backdrop', 'ProcessWire', 'EC-CUBE',
+      'Hyva Themes', 'Gambio', 'EasyDigitalDownloads'
+    ] AS php_apps,
+    ['Cart Functionality', 'Google Analytics Enhanced eCommerce'] AS not_a_platform,
+    ['Squarespace Commerce', 'Wix eCommerce'] AS builder_commerce
+)
