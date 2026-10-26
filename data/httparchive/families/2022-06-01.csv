@@ -1,0 +1,32 @@
+WITH sites AS (
+  SELECT root_page, ARRAY_AGG(DISTINCT t.technology) AS techs
+  FROM `httparchive.crawl.pages`, UNNEST(technologies) AS t
+  WHERE date = @crawl_date
+    AND client = 'mobile'
+    AND is_root_page
+    AND t.technology IN UNNEST(watched)
+  GROUP BY root_page
+)
+SELECT
+  @crawl_date AS crawl_date,
+  f.parent AS family,
+  COUNTIF(f.parent IN UNNEST(s.techs)) AS parent_sites,
+  COUNTIF(f.parent IN UNNEST(s.techs)
+          AND EXISTS(SELECT 1 FROM UNNEST(f.children) AS c WHERE c IN UNNEST(s.techs))) AS with_derivative,
+  COUNTIF(f.parent IN UNNEST(s.techs)
+          AND NOT EXISTS(SELECT 1 FROM UNNEST(f.children) AS c WHERE c IN UNNEST(s.techs))) AS core_only,
+  COUNTIF(f.parent NOT IN UNNEST(s.techs)
+          AND EXISTS(SELECT 1 FROM UNNEST(f.children) AS c WHERE c IN UNNEST(s.techs))) AS derivative_without_parent,
+  ROUND(100 * COUNTIF(f.parent IN UNNEST(s.techs)
+                      AND EXISTS(SELECT 1 FROM UNNEST(f.children) AS c WHERE c IN UNNEST(s.techs)))
+        / NULLIF(COUNTIF(f.parent IN UNNEST(s.techs)), 0), 2) AS pct_with_derivative
+FROM sites AS s, UNNEST(families) AS f
+GROUP BY family
+ORDER BY parent_sites DESC; -- at [19:1]
+crawl_date,family,parent_sites,with_derivative,core_only,derivative_without_parent,pct_with_derivative
+2022-06-01,WordPress,2771230,499212,2272018,0,18.01
+2022-06-01,Wix,156938,62901,94037,0,40.08
+2022-06-01,Squarespace,76325,76302,23,0,99.97
+2022-06-01,Magento,50370,0,50370,0,0.0
+2022-06-01,Webflow,30088,0,30088,0,0.0
+2022-06-01,Weebly,24853,4840,20013,0,19.47
