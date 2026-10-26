@@ -25,13 +25,13 @@ for date in $DATES; do
     out="data/httparchive/$q/$date.csv"
     if [ "$MODE" = "dry" ]; then
       echo "== $q @ $date"
-      bq "${PROJECT_FLAG[@]}" --quiet query --use_legacy_sql=false --dry_run \
-         --parameter="crawl_date:DATE:$date" "$sql"
+      printf '%s\n' "$sql" | bq "${PROJECT_FLAG[@]}" --quiet query --use_legacy_sql=false --dry_run \
+         --parameter="crawl_date:DATE:$date"
     else
       echo "== $q @ $date -> $out"
-      bq "${PROJECT_FLAG[@]}" --quiet --format=csv query --use_legacy_sql=false \
+      printf '%s\n' "$sql" | bq "${PROJECT_FLAG[@]}" --quiet --format=csv query --use_legacy_sql=false \
          --max_rows=1000 --maximum_bytes_billed="$MAX_BYTES" \
-         --parameter="crawl_date:DATE:$date" "$sql" > "$out.tmp"
+         --parameter="crawl_date:DATE:$date" > "$out.tmp"
       # fail loudly on empty results rather than commit a header-only file
       [ "$(wc -l < "$out.tmp")" -ge 2 ] || { echo "empty result for $q @ $date" >&2; rm -f "$out.tmp"; exit 1; }
       mv "$out.tmp" "$out"
