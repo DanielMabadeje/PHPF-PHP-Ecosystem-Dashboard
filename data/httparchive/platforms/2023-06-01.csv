@@ -1,0 +1,115 @@
+SELECT
+  @crawl_date AS crawl_date,
+  t.technology AS platform,
+  t.technology IN UNNEST(php_apps) AS is_php,
+  COUNT(DISTINCT p.root_page) AS sites
+FROM `httparchive.crawl.pages` AS p, UNNEST(p.technologies) AS t, UNNEST(t.categories) AS cat
+WHERE p.date = @crawl_date
+  AND p.client = 'mobile'
+  AND p.is_root_page
+  AND cat IN ('CMS', 'Ecommerce')
+  AND t.technology NOT IN UNNEST(not_a_platform)
+GROUP BY platform, is_php
+ORDER BY sites DESC
+LIMIT 100; -- at [17:1]
+crawl_date,platform,is_php,sites
+2023-06-01,WordPress,true,5780995
+2023-06-01,WooCommerce,true,1082419
+2023-06-01,Shopify,false,491050
+2023-06-01,Wix,false,434973
+2023-06-01,Joomla,true,282763
+2023-06-01,Squarespace,false,224426
+2023-06-01,Squarespace Commerce,false,224382
+2023-06-01,Wix eCommerce,false,209442
+2023-06-01,Drupal,true,208727
+2023-06-01,PrestaShop,true,110209
+2023-06-01,1C-Bitrix,true,92445
+2023-06-01,Duda,false,90728
+2023-06-01,Weebly,true,79497
+2023-06-01,Tilda,false,75516
+2023-06-01,TYPO3 CMS,true,74158
+2023-06-01,Magento,true,70435
+2023-06-01,GoDaddy Website Builder,false,64726
+2023-06-01,Jimdo,false,52990
+2023-06-01,OpenCart,true,34643
+2023-06-01,Adobe Experience Manager,false,26352
+2023-06-01,Google My Business,false,25239
+2023-06-01,Hatena Blog,false,24555
+2023-06-01,HubSpot CMS Hub,false,24511
+2023-06-01,BigCommerce,false,21881
+2023-06-01,Fourthwall,false,20450
+2023-06-01,Shopware,true,20328
+2023-06-01,Tiendanube,false,19154
+2023-06-01,Square Online,true,19048
+2023-06-01,Pixnet,false,18818
+2023-06-01,Google Sites,false,18719
+2023-06-01,Mercado Shops,false,18225
+2023-06-01,Contao,true,17891
+2023-06-01,Craft CMS,true,17570
+2023-06-01,DNN,false,16870
+2023-06-01,Nuvemshop,false,16423
+2023-06-01,Gnuboard,true,15685
+2023-06-01,Contentful,false,15665
+2023-06-01,DataLife Engine,true,14988
+2023-06-01,WebNode,false,13933
+2023-06-01,Tray,false,13768
+2023-06-01,Loja Integrada,false,13371
+2023-06-01,October CMS,true,13146
+2023-06-01,MODX,true,13039
+2023-06-01,Kentico CMS,false,12996
+2023-06-01,Skolengo,false,12839
+2023-06-01,Shoptet,true,12412
+2023-06-01,Cafe24,false,12349
+2023-06-01,Liferay,false,12065
+2023-06-01,ColorMeShop,false,11933
+2023-06-01,Shoper,false,11911
+2023-06-01,Sitecore,false,11839
+2023-06-01,Webflow Ecommerce,false,10938
+2023-06-01,Concrete CMS,true,10801
+2023-06-01,Shopline,false,10361
+2023-06-01,Mono.net,false,9027
+2023-06-01,Lightspeed eCom,false,9013
+2023-06-01,Odoo,false,8974
+2023-06-01,Ecwid,false,8911
+2023-06-01,Megagroup CMS.S3,false,8725
+2023-06-01,Kajabi,false,8594
+2023-06-01,Strato Website,false,7621
+2023-06-01,nopCommerce,false,7539
+2023-06-01,SPIP,true,7495
+2023-06-01,ePages,false,7475
+2023-06-01,ExpressionEngine,true,7436
+2023-06-01,EasyDigitalDownloads,true,7284
+2023-06-01,Microsoft SharePoint,false,6734
+2023-06-01,Bentobox,false,6646
+2023-06-01,JTL Shop,false,6468
+2023-06-01,Popmenu,false,6224
+2023-06-01,CS Cart,true,6082
+2023-06-01,SilverStripe,false,5971
+2023-06-01,EC-CUBE,true,5960
+2023-06-01,Gumroad,false,5945
+2023-06-01,Imweb,false,5816
+2023-06-01,Ideasoft,false,5520
+2023-06-01,MakeShop,false,5413
+2023-06-01,stores.jp,false,5203
+2023-06-01,ProcessWire,true,5155
+2023-06-01,Plone,false,5134
+2023-06-01,osCommerce,true,5103
+2023-06-01,Sitefinity,false,5096
+2023-06-01,Ghost,false,5088
+2023-06-01,Wagtail,false,5012
+2023-06-01,Bizweb,false,4943
+2023-06-01,Salesforce Commerce Cloud,false,4849
+2023-06-01,Haravan,false,4772
+2023-06-01,Shoplazza,false,4628
+2023-06-01,Prismic,false,4601
+2023-06-01,VTEX,false,4569
+2023-06-01,Gambio,true,4533
+2023-06-01,JouwWeb,false,4267
+2023-06-01,Strikingly,false,4104
+2023-06-01,Sanity,false,3956
+2023-06-01,Dokan,false,3954
+2023-06-01,inSales,false,3887
+2023-06-01,Welcart,false,3853
+2023-06-01,Optimizely Content Management,false,3852
+2023-06-01,Base,false,3779
+2023-06-01,Shoprenter,false,3749
