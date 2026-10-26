@@ -1,0 +1,52 @@
+name: Refresh data
+
+on:
+  workflow_dispatch:
+    inputs:
+      crawl_dates:
+        description: "Space-separated crawl dates (YYYY-MM-DD). Empty = repo variable CRAWL_DATES, else the Web Almanac dates."
+        required: false
+        default: ""
+      dry_run:
+        description: "Only print bytes each query would scan"
+        type: boolean
+        default: true
+  schedule:
+    - cron: "0 6 1 */3 *"   # quarterly; set the CRAWL_DATES repo variable to the dates you want
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  httparchive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Run queries
+        env:
+          GCP_PROJECT: ${{ vars.GCP_PROJECT }}
+          MAX_BYTES_BILLED: ${{ vars.MAX_BYTES_BILLED }}
+          CRAWL_DATES: ${{ inputs.crawl_dates || vars.CRAWL_DATES }}
+          DRY: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          MODE=run
+          if [ "$DRY" = "true" ]; then MODE=dry; fi
+          ./scripts/run_httparchive.sh "$MODE"
+
+      - name: Open PR with new data
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: data-refresh
+          title: "Refresh HTTP Archive data"
+          commit-message: "data: refresh HTTP Archive extractions"
+          body: "Automated refresh. Review the diff in data/ before merging; merging redeploys the dashboard."
+          add-paths: data/

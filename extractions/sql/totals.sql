@@ -1,0 +1,47 @@
+-- Query 1: totals. Parameter: @crawl_date (DATE)
+WITH sites AS (
+  SELECT
+    root_page,
+    LOGICAL_OR(t.technology = 'PHP')              AS php_detected,
+    LOGICAL_OR(t.technology IN UNNEST(php_apps))  AS php_app,
+    LOGICAL_OR('CMS' IN UNNEST(t.categories))     AS is_cms,
+    LOGICAL_OR('Ecommerce' IN UNNEST(t.categories)
+               AND t.technology NOT IN UNNEST(not_a_platform)) AS is_shop,
+    LOGICAL_OR('Ecommerce' IN UNNEST(t.categories)
+               AND t.technology NOT IN UNNEST(not_a_platform)
+               AND t.technology NOT IN UNNEST(builder_commerce)) AS is_shop_strict,
+    LOGICAL_OR(t.technology = 'WordPress')            AS wordpress,
+    LOGICAL_OR(t.technology = 'WooCommerce')          AS woocommerce,
+    LOGICAL_OR(t.technology = 'EasyDigitalDownloads') AS edd
+  FROM `httparchive.crawl.pages`, UNNEST(technologies) AS t
+  WHERE date = @crawl_date
+    AND client = 'mobile'
+    AND is_root_page
+  GROUP BY root_page
+)
+SELECT
+  @crawl_date                                 AS crawl_date,
+  COUNT(*)                                    AS total_sites,
+  COUNTIF(php_detected)                       AS php_detected,
+  COUNTIF(php_app)                            AS runs_a_php_application,
+  COUNTIF(php_app AND NOT php_detected)       AS php_app_but_php_not_flagged,
+  COUNTIF(php_detected AND NOT php_app)       AS php_without_a_named_application,
+  COUNTIF(is_cms)                             AS cms_sites,
+  COUNTIF(is_cms AND php_app)                 AS cms_sites_on_php,
+  ROUND(100 * COUNTIF(is_cms AND php_app) / NULLIF(COUNTIF(is_cms), 0), 2) AS pct_of_cms_on_php,
+  COUNTIF(is_shop)                            AS ecommerce_sites,
+  COUNTIF(is_shop AND php_app)                AS ecommerce_sites_on_php,
+  ROUND(100 * COUNTIF(is_shop AND php_app) / NULLIF(COUNTIF(is_shop), 0), 2) AS pct_of_shops_on_php,
+  COUNTIF(is_shop_strict)                     AS shops_strict,
+  COUNTIF(is_shop_strict AND php_app)         AS shops_strict_on_php,
+  ROUND(100 * COUNTIF(is_shop_strict AND php_app) / NULLIF(COUNTIF(is_shop_strict), 0), 2) AS pct_php_strict,
+  COUNTIF(is_shop AND NOT is_shop_strict)             AS dropped,
+  COUNTIF(is_shop AND NOT is_shop_strict AND php_app) AS dropped_but_php,
+  COUNTIF(wordpress)                                  AS wordpress_sites,
+  COUNTIF(wordpress AND NOT woocommerce AND NOT edd)  AS wp_core_only,
+  COUNTIF(woocommerce)                                AS woocommerce,
+  COUNTIF(edd)                                        AS easy_digital_downloads,
+  COUNTIF(woocommerce AND edd)                        AS both,
+  COUNTIF(woocommerce AND NOT wordpress)              AS woocommerce_without_wordpress,
+  COUNTIF(edd AND NOT wordpress)                      AS edd_without_wordpress
+FROM sites;

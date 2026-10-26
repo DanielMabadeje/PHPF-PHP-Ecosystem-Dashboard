@@ -1,0 +1,5 @@
+node_modules/
+dashboard/build/
+dashboard/.evidence/
+dashboard/sources/php/*.csv
+*.tmp
