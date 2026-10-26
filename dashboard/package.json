@@ -1,0 +1,24 @@
+{
+  "name": "php-ecosystem-dashboard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "evidence dev",
+    "build": "evidence build",
+    "build:strict": "evidence build:strict",
+    "preview": "evidence preview",
+    "sources": "evidence sources"
+  },
+  "dependencies": {
+    "@evidence-dev/core-components": "^4.8.10",
+    "@evidence-dev/csv": "^1.0.12",
+    "@evidence-dev/duckdb": "^1.0.11",
+    "@evidence-dev/evidence": "^39.1.13"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  }
+}
