@@ -17,7 +17,9 @@ between crawls, so part of any trend can be detection change rather than real ch
 ```sql totals
 select
   strftime(crawl_date, '%Y-%m') as crawl,
-  *
+  *,
+  round(100.0 * runs_a_php_application / total_sites, 2) as pct_sites_php_app,
+  round(100.0 * php_detected / total_sites, 2) as pct_sites_php_flagged
 from php.php_apps_totals
 order by crawl_date
 ```
@@ -70,12 +72,25 @@ do not always match, and this chart shows how big each group is.
   xType=category
   y={['runs_a_php_application','php_without_a_named_application']}
   type=stacked
+  sort=false
   yFmt=num0
   title="Sites running a named PHP application vs PHP with no named application"
 />
 
 **Reading it:** the bottom segment is sites running a named PHP application. The top segment is sites that are flagged as PHP
 but do not run an application from our list: custom code, frameworks used directly, or applications we do not name.
+**Careful with raw counts.** The HTTP Archive crawl grew a lot between 2021 and 2023, so the bars above get taller partly because
+more sites were crawled, not because PHP grew. Compare crawls using the share of all sites below, not the bar heights.
+
+<LineChart
+  data={totals}
+  x=crawl
+  xType=category
+  y={['pct_sites_php_app','pct_sites_php_flagged']}
+  yAxisTitle="% of all crawled sites"
+  title="Share of all crawled sites: running a named PHP application vs flagged as PHP"
+/>
+
 The table below gives the numbers, plus the reverse case: sites running a named application where PHP itself was *not* flagged.
 That reverse number should be small; if it grows, the "PHP" detection is missing sites that the application detection catches.
 
@@ -96,12 +111,13 @@ WooCommerce and Easy Digital Downloads are plugins that only run on top of WordP
   xType=category
   y={['wp_core_only','woocommerce','easy_digital_downloads']}
   type=stacked
+  sort=false
   yFmt=num0
   title="WordPress core only vs WooCommerce vs EDD"
 />
 
 **Reading it:** `wp_core_only` is WordPress sites with no commerce plugin detected. `woocommerce` and `easy_digital_downloads`
-are sites running those plugins. A site that has both plugins appears in both series, so adding the bars slightly overstates the
+are sites running those plugins. These are counts of sites, and the crawl was much smaller in 2021 and 2022 than later, so compare shares rather than bar heights across crawls. A site that has both plugins appears in both series, so adding the bars slightly overstates the
 number of WordPress sites. This family matters because WooCommerce alone is the largest PHP commerce platform in the crawl, and
 it would be invisible in any count that looked only at which technologies imply PHP.
 

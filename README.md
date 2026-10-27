@@ -26,6 +26,8 @@ Why it is built this way:
 - **Each query returns a small aggregate**, so the repo stays small and the site is fast.
 - **Results are committed as CSV through a PR.** Reviewers can see exactly how the numbers changed before they go live.
 
+For what each query answers, which chart it feeds and what to be careful about, see [`extractions/README.md`](extractions/README.md).
+
 ## Repository layout
 
 ```

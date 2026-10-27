@@ -39,13 +39,16 @@ for date in $DATES; do
       bq ${PROJECT_FLAG[@]+"${PROJECT_FLAG[@]}"} --quiet --format=csv query --use_legacy_sql=false \
          --max_rows=1000 --maximum_bytes_billed="$MAX_BYTES" \
          --parameter="crawl_date:DATE:$date" < "$sqlfile" > "$out.tmp"
-      # fail loudly on empty results rather than commit a header-only file
-      [ "$(wc -l < "$out.tmp")" -ge 2 ] || { echo "empty result for $q @ $date" >&2; rm -f "$out.tmp" "$sqlfile"; exit 1; }
+      # bq prints a script's statement text before its result; keep only the CSV
+      # (from the header line on).
+      awk '/^crawl_date,/{p=1} p' "$out.tmp" > "$out.tmp2" && mv "$out.tmp2" "$out.tmp"
       # the first column of every query is crawl_date; anything else means bq returned
       # something other than the result table (e.g. script text), so do not commit it
       head -n 1 "$out.tmp" | grep -q '^crawl_date' || {
         echo "unexpected output for $q @ $date; first lines:" >&2; head -n 3 "$out.tmp" >&2
         rm -f "$out.tmp" "$sqlfile"; exit 1; }
+      # fail loudly on empty results rather than commit a header-only file
+      [ "$(wc -l < "$out.tmp")" -ge 2 ] || { echo "empty result for $q @ $date" >&2; rm -f "$out.tmp" "$sqlfile"; exit 1; }
       mv "$out.tmp" "$out"
     fi
     rm -f "$sqlfile"
