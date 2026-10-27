@@ -3,14 +3,15 @@ title: PHP applications on the web
 ---
 
 **The question:** when people say "PHP runs a large part of the web", what are they actually pointing at?
-This page answers it by counting sites that run a *named PHP application*<Info description="A site on which the crawler detected at least one technology from our list of PHP-based applications, for example WordPress, WooCommerce, Drupal, Joomla or Magento. The list is in the repository and is not all PHP software." /> such as WordPress, Drupal or Magento,
-rather than only sites where a crawler flagged PHP<Info description="The crawler's detection list for the site includes PHP. That happens either from direct evidence (for example an X-Powered-By header or a PHP session cookie) or because another detection implies it: detecting WordPress, Drupal and similar applications adds PHP automatically." />.
+This page answers it by counting sites that run a *named PHP application* such as WordPress, Drupal or Magento,
+rather than only sites where a crawler flagged PHP.
+A *named PHP application* is a site on which the crawler detected at least one technology from our list of PHP-based applications.
+"Flagged as PHP" means the crawler's detection list for the site includes PHP, either from direct evidence or because another detection implies it.
+Both terms are explained in the [glossary](/glossary).
 
 **Why it matters:** "PHP is on over half of all sites" invites the reply that those are old servers nobody maintains.
 "PHP is what WordPress, WooCommerce, Drupal and Magento are written in" is the same fact, but about software that is
 actively developed and widely used.
-
-New to these terms (flagged as PHP, named application, crawl)? See the [glossary](/glossary).
 
 **Source:** [HTTP Archive](https://httparchive.org) through Google BigQuery (`httparchive.crawl.pages`), mobile client,
 home pages only. Technology detection is [Wappalyzer](https://github.com/HTTPArchive/wappalyzer); its definitions change
@@ -63,7 +64,7 @@ Figures for the <Value data={latest} column=crawl /> crawl: mobile client, home 
 **How to read these.** The first three are percentages of a *subset* of sites: those the crawler detected as a CMS, or as an online shop.
 The fourth is the size of the whole crawl. "Detected" matters: a custom-built shop the crawler cannot identify is not counted as a shop, and
 a site that hides its technology is counted as using none. The two shop figures differ only in what counts as a shop. Neither is the
-single correct answer, which is why both are shown. Hover the <Info description="Hover or tap the info icon next to a title to see a short explanation." /> icons for definitions, or see the [glossary](/glossary).
+single correct answer, which is why both are shown. Definitions of every term are in the [glossary](/glossary).
 
 ## Share of CMS and ecommerce sites on PHP
 
