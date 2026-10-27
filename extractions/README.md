@@ -21,14 +21,13 @@ detections are not platforms, which mark builders that merely support selling). 
 - What share of CMS sites runs on a PHP application? (`pct_of_cms_on_php`)
 - What share of online shops runs on one, using the Web Almanac's definition of a shop (`pct_of_shops_on_php`) and a stricter one that drops
   site-builder commerce flags (`pct_php_strict`)?
-- Do "the crawler flagged PHP" and "the site runs a named PHP application" agree? (`php_detected`, `runs_a_php_application`,
-  `php_app_but_php_not_flagged`, `php_without_a_named_application`)
+- How many PHP sites does a count of named applications leave out? (`php_without_a_named_application`: flagged as PHP, no listed application.) The reverse, `php_app_but_php_not_flagged`, is near zero by construction, because detecting WordPress, Drupal and similar applications automatically adds PHP.
 - How much of WordPress is plain WordPress versus WooCommerce or Easy Digital Downloads? (`wp_core_only`, `woocommerce`, `easy_digital_downloads`)
 
 **Why it exists:** "PHP is on over half of sites" invites the reply that those are old, unmaintained servers. Counting sites that run
 named, actively developed applications moves the burden of proof.
 
-**Shown in:** the headline numbers, the share-of-CMS/shops line chart, the PHP-flag-vs-application chart and table, and the WordPress-family chart.
+**Shown in:** the headline numbers, the share-of-CMS/shops line chart, the "how much PHP is not a named application" chart and table, and the WordPress-family chart.
 
 **Read with care**
 - Counts are sites crawled, and the crawl was much smaller in 2021 and 2022 than later. Compare **shares** across crawls, not raw counts.

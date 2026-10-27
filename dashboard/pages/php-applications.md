@@ -60,11 +60,14 @@ particular site sells, so the strict line is a tighter definition of "online sho
 **Caveats:** "on PHP" means the site runs one of the applications in a fixed list of PHP-based platforms
 (see the repository). Platforms that the detection data does not link to PHP either way, such as Shoper and JTL Shop, are not on the list.
 
-## Do the `PHP` flag and the application flag agree?
+## How much PHP is not a named application?
 
-**What it shows:** two different ways of deciding that a site "uses PHP", compared. Some crawlers flag a site as PHP when they
-see PHP-specific clues in the response. Separately, we can say a site uses PHP because it runs WordPress, Drupal and so on. The two
-do not always match, and this chart shows how big each group is.
+**What it shows:** two groups of sites that use PHP. The first runs a named PHP application (WordPress, Drupal and so on).
+The second is flagged as PHP by the crawler but runs none of the applications on our list.
+
+**How "flagged as PHP" works:** the crawler marks a site as PHP in two ways. Either it sees direct evidence (for example an
+`X-Powered-By: PHP` header or a PHP session cookie), or another detection implies it: whenever WordPress, Drupal, Joomla or Magento is detected,
+PHP is added automatically. This means nearly every site running a listed application is also flagged as PHP, by construction.
 
 <BarChart
   data={totals}
@@ -77,8 +80,10 @@ do not always match, and this chart shows how big each group is.
   title="Sites running a named PHP application vs PHP with no named application"
 />
 
-**Reading it:** the bottom segment is sites running a named PHP application. The top segment is sites that are flagged as PHP
-but do not run an application from our list: custom code, frameworks used directly, or applications we do not name.
+**Reading it:** the bottom segment is sites running a named PHP application. The top segment is sites where the crawler saw PHP directly
+but which run no application from our list: custom code, frameworks used directly (such as Laravel or Symfony), or applications we do not name.
+That top segment is the part of PHP that a count of named applications leaves out, so counting only named applications **understates** PHP.
+
 **Careful with raw counts.** The HTTP Archive crawl grew a lot between 2021 and 2023, so the bars above get taller partly because
 more sites were crawled, not because PHP grew. Compare crawls using the share of all sites below, not the bar heights.
 
@@ -91,8 +96,9 @@ more sites were crawled, not because PHP grew. Compare crawls using the share of
   title="Share of all crawled sites: running a named PHP application vs flagged as PHP"
 />
 
-The table below gives the numbers, plus the reverse case: sites running a named application where PHP itself was *not* flagged.
-That reverse number should be small; if it grows, the "PHP" detection is missing sites that the application detection catches.
+The table below gives the numbers. The first column, sites running a named application where PHP was *not* flagged, is close to zero
+because of the implication rule above. It is not an independent check on the detection, and it is not evidence that the two methods agree.
+The second column is the informative one: the PHP sites that a named-application count does not see.
 
 <DataTable data={totals} rows=10>
   <Column id=crawl />
