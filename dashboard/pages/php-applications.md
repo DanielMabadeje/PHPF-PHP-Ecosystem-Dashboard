@@ -3,8 +3,8 @@ title: PHP applications on the web
 ---
 
 **The question:** when people say "PHP runs a large part of the web", what are they actually pointing at?
-This page answers it by counting sites that run a *named PHP application* such as WordPress, Drupal or Magento,
-rather than only sites where a crawler spotted the word "PHP".
+This page answers it by counting sites that run a *named PHP application*<Info description="A site on which the crawler detected at least one technology from our list of PHP-based applications, for example WordPress, WooCommerce, Drupal, Joomla or Magento. The list is in the repository and is not all PHP software." /> such as WordPress, Drupal or Magento,
+rather than only sites where a crawler flagged PHP<Info description="The crawler's detection list for the site includes PHP. That happens either from direct evidence (for example an X-Powered-By header or a PHP session cookie) or because another detection implies it: detecting WordPress, Drupal and similar applications adds PHP automatically." />.
 
 **Why it matters:** "PHP is on over half of all sites" invites the reply that those are old servers nobody maintains.
 "PHP is what WordPress, WooCommerce, Drupal and Magento are written in" is the same fact, but about software that is
@@ -32,13 +32,38 @@ select * from ${totals} order by crawl_date desc limit 1
 
 ## The latest crawl at a glance
 
-<BigValue data={latest} value=pct_of_cms_on_php title="CMS sites on PHP (%)" />
-<BigValue data={latest} value=pct_of_shops_on_php title="Ecommerce sites on PHP (%)" />
-<BigValue data={latest} value=total_sites title="Sites crawled" fmt=num0 />
+Figures for the <Value data={latest} column=crawl /> crawl: mobile client, home pages only.
 
-Of the sites that use a content management system (a CMS, the software behind most blogs and company sites),
-the first number is the share built on a PHP application. The second is the same for online shops. The third is how many
-home pages the crawl covered, which is the base for everything below.
+<BigValue
+  data={latest}
+  value=pct_of_cms_on_php
+  title="Detected CMS sites on a PHP application (%)"
+  description="Of the sites the crawler detected as a content management system (CMS), the share that run at least one PHP-based application from our list, such as WordPress or Drupal. Sites with no detected CMS are not counted."
+/>
+<BigValue
+  data={latest}
+  value=pct_of_shops_on_php
+  title="Detected online shops on a PHP application (%)"
+  description="Of the sites the crawler detected as online shops, the share that run a PHP-based application from our list, such as WooCommerce or Magento. Uses the Web Almanac definition of an online shop, so the figure can be compared with its published report."
+/>
+<BigValue
+  data={latest}
+  value=pct_php_strict
+  title="Online shops on PHP, strict definition (%)"
+  description="Same as the previous figure, but ignoring two detections that only show a site builder supports selling (Squarespace Commerce and Wix eCommerce). Fewer sites count as shops under this definition, and the PHP share is higher."
+/>
+<BigValue
+  data={latest}
+  value=total_sites
+  title="Home pages crawled"
+  fmt=num0
+  description="Home pages in this crawl. The CMS and shop percentages are out of the sites detected as a CMS or a shop, not out of this total."
+/>
+
+**How to read these.** The first three are percentages of a *subset* of sites: those the crawler detected as a CMS, or as an online shop.
+The fourth is the size of the whole crawl. "Detected" matters: a custom-built shop the crawler cannot identify is not counted as a shop, and
+a site that hides its technology is counted as using none. The two shop figures differ only in what counts as a shop. Neither is the
+single correct answer, which is why both are shown. Hover the <Info description="Hover or tap the info icon next to a title to see a short explanation." /> icons for definitions, or see the [glossary](/glossary).
 
 ## Share of CMS and ecommerce sites on PHP
 
@@ -105,9 +130,9 @@ because of the implication rule above. It is not an independent check on the det
 The second column is the informative one: the PHP sites that a named-application count does not see.
 
 <DataTable data={totals} rows=10>
-  <Column id=crawl />
-  <Column id=php_app_but_php_not_flagged title="Named app, PHP not flagged" fmt=num0 />
-  <Column id=php_without_a_named_application title="PHP flagged, no named app" fmt=num0 />
+  <Column id=crawl description="The month the HTTP Archive crawled the web. Each row is one crawl." />
+  <Column id=php_app_but_php_not_flagged title="Named app, PHP not flagged" fmt=num0 description="Sites where a named PHP application was detected but the crawler did not list PHP. Close to zero by design: detecting WordPress, Drupal and similar applications adds PHP automatically." />
+  <Column id=php_without_a_named_application title="PHP flagged, no named app" fmt=num0 description="Sites the crawler marked as PHP that run none of the applications on our list: custom code, frameworks used directly, or applications we do not name. A count of named applications misses these." />
 </DataTable>
 
 ## WordPress family
@@ -171,12 +196,12 @@ order by parent_sites desc
 ```
 
 <DataTable data={families}>
-  <Column id=family />
-  <Column id=parent_sites title="Sites on the base platform" fmt=num0 />
-  <Column id=core_only title="Base only" fmt=num0 />
-  <Column id=with_derivative title="With a derivative" fmt=num0 />
-  <Column id=pct_with_derivative title="% with a derivative" />
-  <Column id=derivative_without_parent title="Derivative, base not detected" fmt=num0 />
+  <Column id=family description="A base platform and the add-ons or variants that run on top of it, for example WordPress with WooCommerce." />
+  <Column id=parent_sites title="Sites on the base platform" fmt=num0 description="Sites where the base platform was detected, with or without an add-on." />
+  <Column id=core_only title="Base only" fmt=num0 description="Sites running the base platform with none of the listed add-ons." />
+  <Column id=with_derivative title="With a derivative" fmt=num0 description="Sites running the base platform plus at least one listed add-on." />
+  <Column id=pct_with_derivative title="% with a derivative" description="Share of base-platform sites that also run an add-on." />
+  <Column id=derivative_without_parent title="Derivative, base not detected" fmt=num0 description="A data-quality check: sites where an add-on was detected but its base platform was not. It should be near zero." />
 </DataTable>
 
 **Reading it:** `% with a derivative` is how common the add-on is among sites on the base platform.
