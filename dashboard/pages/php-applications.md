@@ -35,36 +35,29 @@ select * from ${totals} order by crawl_date desc limit 1
 
 Figures for the <Value data={latest} column=crawl /> crawl: mobile client, home pages only.
 
-<BigValue
-  data={latest}
-  value=pct_of_cms_on_php
-  title="Detected CMS sites on a PHP application (%)"
-  description="Of the sites the crawler detected as a content management system (CMS), the share that run at least one PHP-based application from our list, such as WordPress or Drupal. Sites with no detected CMS are not counted."
-/>
-<BigValue
-  data={latest}
-  value=pct_of_shops_on_php
-  title="Detected online shops on a PHP application (%)"
-  description="Of the sites the crawler detected as online shops, the share that run a PHP-based application from our list, such as WooCommerce or Magento. Uses the Web Almanac definition of an online shop, so the figure can be compared with its published report."
-/>
-<BigValue
-  data={latest}
-  value=pct_php_strict
-  title="Online shops on PHP, strict definition (%)"
-  description="Same as the previous figure, but ignoring two detections that only show a site builder supports selling (Squarespace Commerce and Wix eCommerce). Fewer sites count as shops under this definition, and the PHP share is higher."
-/>
-<BigValue
-  data={latest}
-  value=total_sites
-  title="Home pages crawled"
-  fmt=num0
-  description="Home pages in this crawl. The CMS and shop percentages are out of the sites detected as a CMS or a shop, not out of this total."
-/>
+### Across all crawled sites
 
-**How to read these.** The first three are percentages of a *subset* of sites: those the crawler detected as a CMS, or as an online shop.
-The fourth is the size of the whole crawl. "Detected" matters: a custom-built shop the crawler cannot identify is not counted as a shop, and
-a site that hides its technology is counted as using none. The two shop figures differ only in what counts as a shop. Neither is the
-single correct answer, which is why both are shown. Definitions of every term are in the [glossary](/glossary).
+<BigValue data={latest} value=pct_sites_php_flagged title="All sites flagged as PHP (%)" />
+<BigValue data={latest} value=pct_sites_php_app title="All sites running a named PHP application (%)" />
+<BigValue data={latest} value=total_sites title="Home pages crawled" fmt=num0 />
+
+The first figure is the **broad** one: the share of all crawled sites where the crawler's detection includes PHP, whether from direct
+evidence or because it found an application that implies PHP. The second is **narrower**: the share running one of the PHP applications
+on our list (WordPress, Drupal, Magento and so on). The gap between them is PHP that our application list does not name: custom code,
+frameworks used directly, and applications we do not list. Both are floors, because a site that hides its technology is counted as
+using none.
+
+### Within CMS sites and online shops
+
+<BigValue data={latest} value=pct_of_cms_on_php title="Detected CMS sites on a PHP application (%)" />
+<BigValue data={latest} value=pct_of_shops_on_php title="Detected online shops on a PHP application (%)" />
+<BigValue data={latest} value=pct_php_strict title="Online shops on PHP, strict definition (%)" />
+
+**How to read these.** These three are percentages of a *subset* of sites: those the crawler detected as a CMS, or as an online shop,
+not of all sites. "Detected" matters: a custom-built shop the crawler cannot identify is not counted as a shop. The two shop figures differ
+only in what counts as a shop. The strict one also ignores `Squarespace Commerce` and `Wix eCommerce`, which show that a site builder
+*supports* selling rather than that a site sells, so fewer sites count as shops and the PHP share is higher. Neither is the single correct
+answer, which is why both are shown. Definitions of every term are in the [glossary](/glossary).
 
 ## Share of CMS and ecommerce sites on PHP
 
