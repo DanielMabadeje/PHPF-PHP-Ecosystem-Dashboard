@@ -10,6 +10,8 @@ rather than only sites where a crawler spotted the word "PHP".
 "PHP is what WordPress, WooCommerce, Drupal and Magento are written in" is the same fact, but about software that is
 actively developed and widely used.
 
+New to these terms (flagged as PHP, named application, crawl)? See the [glossary](/glossary).
+
 **Source:** [HTTP Archive](https://httparchive.org) through Google BigQuery (`httparchive.crawl.pages`), mobile client,
 home pages only. Technology detection is [Wappalyzer](https://github.com/HTTPArchive/wappalyzer); its definitions change
 between crawls, so part of any trend can be detection change rather than real change.
@@ -47,6 +49,7 @@ A line going up means PHP applications are gaining share of that category; down 
   data={totals}
   x=crawl
   xType=category
+  sort=false
   y={['pct_of_cms_on_php','pct_of_shops_on_php','pct_php_strict']}
   yAxisTitle="% of sites"
   title="PHP share by crawl"
@@ -91,6 +94,7 @@ more sites were crawled, not because PHP grew. Compare crawls using the share of
   data={totals}
   x=crawl
   xType=category
+  sort=false
   y={['pct_sites_php_app','pct_sites_php_flagged']}
   yAxisTitle="% of all crawled sites"
   title="Share of all crawled sites: running a named PHP application vs flagged as PHP"

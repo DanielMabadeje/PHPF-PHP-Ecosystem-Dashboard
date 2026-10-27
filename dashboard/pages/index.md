@@ -13,6 +13,8 @@ Nothing is computed when you open a page, so the numbers are the same for everyo
 - [PHP applications on the web](/php-applications): how many sites run WordPress, Drupal, Magento and other
   PHP-based applications, how that has changed since 2021, and how the answer depends on how "PHP" is defined.
 
+- [Glossary](/glossary): what "flagged as PHP", "named application", "crawl" and the other terms mean, with a worked example.
+
 ## How to read the charts
 
 - **Sites** means the home page of a website (the "root page"), as seen by the HTTP Archive's mobile crawl.
