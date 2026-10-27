@@ -6,6 +6,10 @@ BigQuery (`httparchive.crawl.pages`) for **mobile, root pages only**, once per c
 [`../scripts/queries.sh`](../scripts/queries.sh) and shown on the page
 [PHP applications on the web](../dashboard/pages/php-applications.md).
 
+> **Credit:** these queries are adapted from the research written and documented by
+> [GianfriAur](https://github.com/GianfriAur/) in
+> [ThePHPF/SIG-ambassadors, PR #40](https://github.com/ThePHPF/SIG-ambassadors/pull/40).
+
 | SQL file | Question it answers | Output | Scans (per crawl date) |
 |---|---|---|---|
 | [`totals.sql`](sql/totals.sql) | How many sites run a PHP-based application, and what share of CMS sites and online shops is that? | 1 row per crawl | ~8 GB |

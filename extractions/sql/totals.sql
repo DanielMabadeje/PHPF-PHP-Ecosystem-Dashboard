@@ -1,3 +1,5 @@
+-- Adapted from the queries by GianfriAur (https://github.com/GianfriAur/), ThePHPF/SIG-ambassadors PR #40:
+-- https://github.com/ThePHPF/SIG-ambassadors/pull/40
 -- Query 1: totals per crawl. Parameter: @crawl_date (DATE). Needs _preamble.sql.
 , sites AS (
   SELECT

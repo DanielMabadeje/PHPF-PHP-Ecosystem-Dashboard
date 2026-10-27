@@ -1,3 +1,5 @@
+-- Adapted from the queries by GianfriAur (https://github.com/GianfriAur/), ThePHPF/SIG-ambassadors PR #40:
+-- https://github.com/ThePHPF/SIG-ambassadors/pull/40
 -- Shared lists, prepended to queries flagged "1" in scripts/queries.sh.
 -- Queries using this must continue the WITH clause (start with ", name AS (") or
 -- start directly with SELECT, and join the lists with `, params` in their FROM.

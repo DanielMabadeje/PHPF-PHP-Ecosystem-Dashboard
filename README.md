@@ -214,6 +214,14 @@ The header shows the title and repository link set in `dashboard/pages/+layout.s
 - GitHub Actions: free for public repositories. Private repositories have a monthly minutes allowance on the Free plan; a refresh takes a few minutes.
 - Hosting: GitHub Pages is free for public repositories. Any static host works.
 
+## Credits
+
+The SQL queries, the definition of a "named PHP application" and the research method behind them come from the work of
+[GianfriAur](https://github.com/GianfriAur/) in the PHP Foundation SIG research effort
+([ThePHPF/SIG-ambassadors, PR #40](https://github.com/ThePHPF/SIG-ambassadors/pull/40)). This repository adapts them (a crawl-date
+parameter, single-statement SQL, a refresh pipeline and a dashboard). Data comes from [HTTP Archive](https://httparchive.org).
+Check the SIG-ambassadors repository for the licence that applies to the original material.
+
 ## Roadmap
 
 - [ ] Licence declared in `LICENSE` vs `composer.json` (GitHub API, quarterly)

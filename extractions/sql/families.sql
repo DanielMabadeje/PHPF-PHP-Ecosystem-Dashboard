@@ -1,3 +1,5 @@
+-- Adapted from the queries by GianfriAur (https://github.com/GianfriAur/), ThePHPF/SIG-ambassadors PR #40:
+-- https://github.com/ThePHPF/SIG-ambassadors/pull/40
 -- Query 3: core vs derivatives per crawl. Parameter: @crawl_date (DATE). Self-contained (no preamble).
 -- To add a family, add one STRUCT line below; the watched list is derived from it.
 WITH families AS (

@@ -29,3 +29,10 @@ Nothing is computed when you open a page, so the numbers are the same for everyo
 [HTTP Archive](https://httparchive.org), queried through Google BigQuery. Technology detection is by
 [Wappalyzer](https://www.wappalyzer.com/); its rules change over time, so some movement between crawls reflects
 better detection rather than real change.
+
+## Credits
+
+The queries and the research method behind this dashboard were written and documented by
+[GianfriAur](https://github.com/GianfriAur/) as part of the PHP Foundation SIG research
+([SIG-ambassadors, PR #40](https://github.com/ThePHPF/SIG-ambassadors/pull/40)). This project adapts them: it runs the same
+questions for several crawl dates and publishes the results as a dashboard. Any errors in that adaptation are ours, not theirs.
