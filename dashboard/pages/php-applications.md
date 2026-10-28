@@ -10,8 +10,7 @@ A *named PHP application* is a site on which the crawler detected at least one t
 Both terms are explained in the [glossary](/glossary).
 
 **Why it matters:** "PHP is on over half of all sites" invites the reply that those are old servers nobody maintains.
-"PHP is what WordPress, WooCommerce, Drupal and Magento are written in" is the same fact, but about software that is
-actively developed and widely used.
+"PHP is what WordPress, WooCommerce, Drupal and Magento are written in" is the same fact, but about software with active upstream development and wide use. It does not show that every site running it is kept up to date, and this page does not measure versions.
 
 **Source:** [HTTP Archive](https://httparchive.org) through Google BigQuery (`httparchive.crawl.pages`), mobile client,
 home pages only. Technology detection is [Wappalyzer](https://github.com/HTTPArchive/wappalyzer); its definitions change
@@ -22,7 +21,9 @@ select
   strftime(crawl_date, '%Y-%m') as crawl,
   *,
   round(100.0 * runs_a_php_application / total_sites, 2) as pct_sites_php_app,
-  round(100.0 * php_detected / total_sites, 2) as pct_sites_php_flagged
+  round(100.0 * php_detected / total_sites, 2) as pct_sites_php_flagged,
+  round(100.0 * wordpress_sites / total_sites, 2) as pct_sites_wordpress,
+  round(100.0 * wordpress_sites / runs_a_php_application, 2) as pct_named_apps_wordpress
 from php.php_apps_totals
 order by crawl_date
 ```
@@ -39,6 +40,8 @@ Figures for the <Value data={latest} column=crawl /> crawl: mobile client, home 
 
 <BigValue data={latest} value=pct_sites_php_flagged title="All sites flagged as PHP (%)" />
 <BigValue data={latest} value=pct_sites_php_app title="All sites running a named PHP application (%)" />
+<BigValue data={latest} value=pct_sites_wordpress title="All sites running WordPress (%)" />
+<BigValue data={latest} value=pct_named_apps_wordpress title="Named-application sites that run WordPress (%)" />
 <BigValue data={latest} value=total_sites title="Home pages crawled" fmt=num0 />
 
 The first figure is the **broad** one: the share of all crawled sites where the crawler's detection includes PHP, whether from direct
@@ -46,6 +49,10 @@ evidence or because it found an application that implies PHP. The second is **na
 on our list (WordPress, Drupal, Magento and so on). The gap between them is PHP that our application list does not name: custom code,
 frameworks used directly, and applications we do not list. Both are floors, because a site that hides its technology is counted as
 using none.
+
+**Most of the named-application share is WordPress.** WordPress runs on <Value data={latest} column=pct_sites_wordpress />% of all crawled sites, which is <Value data={latest} column=pct_named_apps_wordpress />% of the sites that run a named PHP application. Read "PHP applications" on this page as "WordPress, plus a long tail".
+
+**This page counts which software a site runs, not which version.** A site on an abandoned release (for example an old Drupal) is counted the same as a fully updated one, so these figures say nothing about how well maintained the sites are.
 
 ### Within CMS sites and online shops
 
