@@ -13,6 +13,8 @@ Nothing is computed when you open a page, so the numbers are the same for everyo
 - [PHP applications on the web](/php-applications): how many sites run WordPress, Drupal, Magento and other
   PHP-based applications, how that has changed since 2021, and how the answer depends on how "PHP" is defined.
 
+- [Explore PHP data](/php-usage): platform trends, add-on adoption and the research questions behind the dashboard.
+
 - [Glossary](/glossary): what "flagged as PHP", "named application", "crawl" and the other terms mean, with a worked example.
 
 ## How to read the charts

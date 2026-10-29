@@ -4,7 +4,9 @@ Each SQL file in [`sql/`](sql/) answers one question about the PHP ecosystem. Al
 BigQuery (`httparchive.crawl.pages`) for **mobile, root pages only**, once per crawl date, and return a small table with a
 `crawl_date` column so the dashboard can show change over time. They are registered in
 [`../scripts/queries.sh`](../scripts/queries.sh) and shown on the page
-[PHP applications on the web](../dashboard/pages/php-applications.md).
+[PHP applications on the web](../dashboard/pages/php-applications.md), as well as the focused
+[platform trends](../dashboard/pages/php-usage/platforms.md) and
+[platform families](../dashboard/pages/php-usage/families.md) pages.
 
 > **Credit:** these queries are adapted from the research written and documented by
 > [GianfriAur](https://github.com/GianfriAur/) in
@@ -15,6 +17,13 @@ BigQuery (`httparchive.crawl.pages`) for **mobile, root pages only**, once per c
 | [`totals.sql`](sql/totals.sql) | How many sites run a PHP-based application, and what share of CMS sites and online shops is that? | 1 row per crawl | ~8 GB |
 | [`platforms.sql`](sql/platforms.sql) | Which CMS and ecommerce platforms are biggest, and which of them are PHP? | up to 100 rows per crawl | ~8 GB |
 | [`families.sql`](sql/families.sql) | For platforms with add-ons, how many sites run the base alone and how many with an add-on? | 1 row per family (6) per crawl | ~4 GB |
+
+The public [research query index](../dashboard/pages/php-usage/research-questions.md) references the SIG-ambassadors extractions and
+distinguishes the three queries backed by this dashboard's refreshable tables, the CMS-version report snapshots, and research whose
+result datasets are not loaded here.
+
+The [CMS versions page](../dashboard/pages/php-usage/versions.md) presents WordPress, Drupal and Magento versions from the SIG's 2025
+and 2026 reports. Its source CSVs are transcribed from those published tables; they are not produced by this repository's refresh script.
 
 `_preamble.sql` holds the lists shared by `totals.sql` and `platforms.sql` (which technologies count as PHP applications, which
 detections are not platforms, which mark builders that merely support selling). It is not a query on its own.
