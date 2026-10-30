@@ -30,20 +30,78 @@ where technology = 'WordPress'
 order by sites desc
 ```
 
-```sql unsupported_versions
+```sql wordpress_comparison
 select
-  strftime(crawl_date, '%Y-%m') as crawl,
-  technology,
-  sum(share_pct) as pct_versioned_on_eol_releases
+  strftime(crawl_date, '%Y') as crawl,
+  version_group,
+  sites,
+  share_pct,
+  support_status
 from php.cms_versions
-where technology in ('Drupal', 'Magento')
+where technology = 'WordPress'
   and share_basis = 'versioned'
-  and support_status = 'End of life'
-group by crawl_date, technology
-order by crawl_date, technology
+order by
+  case version_group
+    when '7.0' then 1
+    when '6.9' then 2
+    when '6.8' then 3
+    when '6.7' then 4
+    when '6.6' then 5
+    when '6.5' then 6
+    when '6.4' then 7
+    when 'rest of 7.x' then 8
+    when 'rest of 6.x' then 9
+    when '5.x' then 10
+    when '4.x' then 11
+    else 12
+  end,
+  crawl_date
+```
+
+```sql support_comparison
+select
+  concat(technology, ' ', strftime(crawl_date, '%Y')) as snapshot,
+  technology,
+  strftime(crawl_date, '%Y') as crawl,
+  case
+    when support_status in ('Supported', 'Current release') then 'Supported at crawl'
+    when support_status = 'End of life' then 'End of life at crawl'
+    else 'Status not classified'
+  end as support_group,
+  sum(share_pct) as share_pct
+from php.cms_versions
+where share_basis = 'versioned'
+group by crawl_date, technology, support_group
+order by crawl_date, technology, support_group
 ```
 
 ## What versions do sites expose?
+
+### WordPress version mix: 2025 vs 2026
+
+<BarChart
+  data={wordpress_comparison}
+  x=version_group
+  y=share_pct
+  yFmt=num1
+  series=crawl
+  type=grouped
+  swapXY=true
+  sort=false
+  seriesColors={{'2025':'#2563eb','2026':'#0891b2'}}
+  yAxisTitle="% of versioned WordPress sites"
+  title="Compare detected WordPress version groups"
+/>
+
+Each pair compares the share of **version-reporting** WordPress sites in that version group for July 2025 and July 2026. A missing bar
+means the report had no sites in that group. The two crawls are one year apart, not a continuous adoption curve.
+
+<DataTable data={wordpress_comparison}>
+  <Column id=crawl title="Crawl year" />
+  <Column id=version_group title="WordPress version group" />
+  <Column id=sites title="Sites" fmt=num0 />
+  <Column id=share_pct title="% of versioned sites" fmt=num1 />
+</DataTable>
 
 <BarChart
   data={latest_wordpress}
@@ -69,19 +127,32 @@ The latest crawl found 5,090,760 WordPress sites; 3,231,804 exposed a version. O
 six weeks before the crawl. The year before, 65.07% of versioned sites were on WordPress 6.8 eleven weeks after its release. The two
 snapshots suggest fast adoption in both cases; they are not a monthly time series.
 
-## Older releases remain visible
+## Supported and end-of-life versions
 
 <BarChart
-  data={unsupported_versions}
-  x=crawl
-  xType=category
-  sort=false
-  y=pct_versioned_on_eol_releases
+  data={support_comparison}
+  x=snapshot
+  y=share_pct
   yFmt=num1
-  series=technology
+  series=support_group
+  type=stacked
+  swapXY=true
+  sort=false
+  seriesColors={{'Supported at crawl':'#2563eb','End of life at crawl':'#dc2626','Status not classified':'#9ca3af'}}
   yAxisTitle="% of versioned sites"
-  title="Drupal and Magento sites reporting an end-of-life release"
+  title="Version support status by application and crawl"
 />
+
+Blue marks versions the report identified as supported or current at that crawl; red marks versions it identified as end of life.
+Grey means the report did not assign a support status, not that those releases are unsupported. For WordPress, only the current release
+was explicitly labelled in the source report, so older version groups remain grey rather than being guessed to be EOL.
+
+<DataTable data={support_comparison}>
+  <Column id=technology title="Application" />
+  <Column id=crawl title="Crawl year" />
+  <Column id=support_group title="Support status at crawl" />
+  <Column id=share_pct title="% of versioned sites" fmt=num1 />
+</DataTable>
 
 In July 2026, 39.54% of versioned Drupal sites were on releases no longer receiving security fixes, down from 51.2% a year earlier.
 Drupal 7 alone accounted for 21.77%; Drupal 8 and 9 accounted for another 17.77%. Magento 1 was still reported by 1,322 sites
