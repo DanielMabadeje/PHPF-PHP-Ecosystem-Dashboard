@@ -2,4 +2,6 @@ node_modules/
 dashboard/build/
 dashboard/.evidence/
 dashboard/sources/php/*.csv
+!dashboard/sources/php/cms_versions.csv
+!dashboard/sources/php/cms_version_coverage.csv
 *.tmp
