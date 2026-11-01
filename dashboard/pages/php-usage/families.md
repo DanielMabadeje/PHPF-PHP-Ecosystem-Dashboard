@@ -1,5 +1,6 @@
 ---
 title: Platform families
+sidebar_position: 2
 ---
 
 Some detected technologies are add-ons or variants of another platform. For example, a site running WooCommerce also runs WordPress.

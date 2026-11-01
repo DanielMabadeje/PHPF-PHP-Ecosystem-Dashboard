@@ -1,5 +1,6 @@
 ---
 title: PHP applications on the web
+sidebar_position: 1
 ---
 
 **The question:** when people say "PHP runs a large part of the web", what are they actually pointing at?
@@ -131,9 +132,9 @@ because of the implication rule above. It is not an independent check on the det
 The second column is the informative one: the PHP sites that a named-application count does not see.
 
 <DataTable data={totals} rows=10>
-  <Column id=crawl description="The month the HTTP Archive crawled the web. Each row is one crawl." />
-  <Column id=php_app_but_php_not_flagged title="Named app, PHP not flagged" fmt=num0 description="Sites where a named PHP application was detected but the crawler did not list PHP. Close to zero by design: detecting WordPress, Drupal and similar applications adds PHP automatically." />
-  <Column id=php_without_a_named_application title="PHP flagged, no named app" fmt=num0 description="Sites the crawler marked as PHP that run none of the applications on our list: custom code, frameworks used directly, or applications we do not name. A count of named applications misses these." />
+  <Column id=crawl />
+  <Column id=php_app_but_php_not_flagged title="Named app, PHP not flagged" fmt=num0 />
+  <Column id=php_without_a_named_application title="PHP flagged, no named app" fmt=num0 />
 </DataTable>
 
 ## WordPress family
@@ -197,12 +198,12 @@ order by parent_sites desc
 ```
 
 <DataTable data={families}>
-  <Column id=family description="A base platform and the add-ons or variants that run on top of it, for example WordPress with WooCommerce." />
-  <Column id=parent_sites title="Sites on the base platform" fmt=num0 description="Sites where the base platform was detected, with or without an add-on." />
-  <Column id=core_only title="Base only" fmt=num0 description="Sites running the base platform with none of the listed add-ons." />
-  <Column id=with_derivative title="With a derivative" fmt=num0 description="Sites running the base platform plus at least one listed add-on." />
-  <Column id=pct_with_derivative title="% with a derivative" description="Share of base-platform sites that also run an add-on." />
-  <Column id=derivative_without_parent title="Derivative, base not detected" fmt=num0 description="A data-quality check: sites where an add-on was detected but its base platform was not. It should be near zero." />
+  <Column id=family />
+  <Column id=parent_sites title="Sites on the base platform" fmt=num0 />
+  <Column id=core_only title="Base only" fmt=num0 />
+  <Column id=with_derivative title="With a derivative" fmt=num0 />
+  <Column id=pct_with_derivative title="% with a derivative" />
+  <Column id=derivative_without_parent title="Derivative, base not detected" fmt=num0 />
 </DataTable>
 
 **Reading it:** `% with a derivative` is how common the add-on is among sites on the base platform.

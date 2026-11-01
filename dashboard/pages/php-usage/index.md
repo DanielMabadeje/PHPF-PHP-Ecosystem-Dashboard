@@ -1,23 +1,22 @@
 ---
-title: Explore PHP data
+title: Platforms and versions
+sidebar_position: 2
 ---
 
-The PHP Foundation SIG research asks questions about PHP across the public web, open-source projects and developer communities.
-This section adds focused views of the HTTP Archive data currently published with this dashboard.
+How are PHP platforms spread across the public web, and how current are the versions they run? This section goes deeper than
+[PHP applications on the web](/php-applications) into the HTTP Archive data.
 
 ## Explore the available data
 
 - [Platform trends](/php-usage/platforms): which PHP platforms are most common, and how their reach has changed over time.
 - [Platform families](/php-usage/families): how often platforms are used on their own or with a listed add-on.
-- [CMS versions](/php-usage/versions): what versions WordPress, Drupal and Magento sites expose, and how much remains unidentified.
-- [Research questions and queries](/php-usage/research-questions): the full set of research extractions documented in SIG-ambassadors PR #40, with their dashboard status.
+- [CMS versions](/php-usage/versions): what versions WordPress, Drupal and Magento sites expose, how many run old releases, and how much remains unidentified.
+- [Research questions and queries](/php-usage/research-questions): every research extraction documented in SIG-ambassadors PR #40, with its dashboard status.
 
-## Data coverage
+## Where the data comes from
 
-The platform and family charts use the five mobile, root-page HTTP Archive crawls included in this repository. CMS version charts use
-the 2025 and 2026 published report snapshots. These do not represent every research result in the SIG material. The GitHub, Packagist
-and Stack Overflow extractions are linked in the research index, but their result datasets are not yet published here, so this dashboard
-does not chart or claim current values for them.
+The platform and family pages use the five mobile, root-page HTTP Archive crawls kept in this repository, refreshed by the project's query runner.
+The CMS version pages use published 2025 and 2026 report snapshots, which the runner does not refresh.
 
-For the broad PHP-versus-named-application comparison, start with [PHP applications on the web](/php-applications). For definitions and
-limitations, see the [glossary](/glossary).
+For open-source repositories (Composer, licences, long-running projects) see [Open source on GitHub](/open-source). For Stack Overflow see
+[Developer community](/community). For definitions and limitations, see the [glossary](/glossary).

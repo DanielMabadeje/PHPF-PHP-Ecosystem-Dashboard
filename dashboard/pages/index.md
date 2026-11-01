@@ -4,17 +4,22 @@ title: PHP Ecosystem Dashboard
 
 How much of the web runs on PHP, and what kind of PHP? This dashboard answers that with public data, so anyone can check the numbers and the method behind them.
 
-It is built for the PHP Foundation SIG research effort. Every figure comes from a SQL query kept in the
-[project repository](https://github.com/DanielMabadeje/PHPF-PHP-Ecosystem-Dashboard), run against a named crawl date.
+It is built for the PHP Foundation SIG research effort. The pages come from two kinds of source, and each page says which:
+
+- **Refreshed pages** (platforms, families) come from SQL queries kept in the
+  [project repository](https://github.com/DanielMabadeje/PHPF-PHP-Ecosystem-Dashboard), run against named crawl dates.
+- **Report pages** (marked `report` in the sidebar) show published results from SIG studies. The studies were run by their authors and
+  are not refreshed by this project's query runner.
+
 Nothing is computed when you open a page, so the numbers are the same for everyone.
 
 ## What is here
 
 - [PHP applications on the web](/php-applications): how many sites run WordPress, Drupal, Magento and other
   PHP-based applications, how that has changed since 2021, and how the answer depends on how "PHP" is defined.
-
-- [Explore PHP data](/php-usage): platform trends, add-on adoption and the research questions behind the dashboard.
-
+- [Platforms and versions](/php-usage): platform trends, add-on adoption, and which versions of WordPress, Drupal and Magento sites run.
+- [Open source on GitHub](/open-source): Composer adoption, licences, how often a LICENSE file and `composer.json` agree, and the longest-running PHP projects.
+- [Developer community](/community): PHP's share of Stack Overflow questions over time.
 - [Glossary](/glossary): what "flagged as PHP", "named application", "crawl" and the other terms mean, with a worked example.
 
 ## How to read the charts

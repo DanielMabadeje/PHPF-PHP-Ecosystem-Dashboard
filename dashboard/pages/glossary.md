@@ -1,5 +1,6 @@
 ---
 title: Glossary
+sidebar_position: 9
 ---
 
 Plain-language definitions of the terms used on this dashboard. If a chart confuses you, start with
@@ -106,3 +107,27 @@ any add-on. A site running an add-on is counted under both the add-on and its pa
 smaller in 2021 and 2022 than later, so compare shares between crawls, not counts.
 
 **Limits of every figure here.** Mobile crawl only; home pages only; undetected technology is counted as absent; detection rules change between crawls.
+## Terms for the version, open-source and community pages
+
+**Version identified, version not identified.** Some sites tell the browser which release of WordPress, Drupal or Magento they run (for example in a generator tag or a header).
+Those are "identified". Sites that hide it are "not identified". Not identified does not mean old, and it does not mean current.
+
+**End of life (EOL).** A release that no longer receives security fixes from its maintainers. The version pages use the status given in the published reports.
+
+**Report snapshot.** A table copied from a published SIG research report. The dashboard's query runner does not refresh these; each page names the report it comes from.
+
+**Composer, `composer.json`, manifest.** Composer is PHP's dependency manager. A project describes itself and its dependencies in a file called `composer.json`, often called its manifest.
+Packages are published through Packagist.
+
+**`vendor/`.** The directory where Composer installs a project's dependencies. It is normally not committed to Git; projects that commit it are counted separately on the Composer page.
+
+**Licence, SPDX identifier.** An SPDX identifier is the standard short name of a licence, such as `MIT` or `Apache-2.0`. A repository's licence is recorded by GitHub (from the licence file)
+and, separately, by `composer.json`.
+
+**Permissive and copyleft.** Permissive licences (MIT, BSD, Apache) let others reuse the code with few conditions. Copyleft licences (GPL, AGPL and weaker relatives such as LGPL and MPL)
+require that changes or combined works carry the same freedoms.
+
+**"PHP is the main language" and "contains any PHP".** GitHub's language detection (Linguist) assigns every repository a main language by size and also records every other language it finds.
+A repository can contain PHP without PHP being its main language.
+
+**Stack Exchange Data Explorer (SEDE).** A public tool for querying Stack Exchange data, refreshed weekly. The Stack Overflow page uses it as its main source.

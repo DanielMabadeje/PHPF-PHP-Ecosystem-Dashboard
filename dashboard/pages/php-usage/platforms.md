@@ -1,5 +1,6 @@
 ---
 title: Platform trends
+sidebar_position: 1
 ---
 
 Which PHP-based platforms are most widely detected, and how has their reach changed across the included HTTP Archive crawls?
