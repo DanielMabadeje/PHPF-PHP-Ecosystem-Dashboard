@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Merges the per-date CSVs of every query in scripts/queries.sh into one file per
-# query, in the folder the Evidence "php" source reads from.
+# Builds every table the Evidence "php" source reads, in dashboard/sources/php/:
+#   1. one merged CSV per BigQuery query in scripts/queries.sh (from data/httparchive/<query>/<date>.csv)
+#   2. every published-report snapshot in data/reports/*.csv (copied as is; the file name is the table name)
+# Both inputs are tracked in git. The output folder is generated and git-ignored, so CI must run this script.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 source scripts/queries.sh
@@ -16,3 +18,10 @@ for entry in "${QUERIES[@]}"; do
   for f in "${files[@]}"; do tail -n +2 "$f" >> "$out"; done
   echo "wrote $out (${#files[@]} crawl dates)"
 done
+
+shopt -s nullglob
+reports=( data/reports/*.csv )
+for f in "${reports[@]}"; do
+  cp "$f" "$DEST/$(basename "$f")"
+done
+echo "copied ${#reports[@]} report snapshot tables from data/reports/"

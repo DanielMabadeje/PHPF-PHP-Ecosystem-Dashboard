@@ -1,0 +1,5 @@
+stars_band,population,sampled,agree_pct,disagree_pct,no_composer_json_pct,no_license_key_pct
+100 or more,8280,876,83.5,2.1,11.9,2.0
+10 to 99,36781,1239,65.0,1.9,25.5,7.4
+1 to 9,210878,1373,55.9,3.5,34.0,5.4
+none,662614,1476,30.3,1.9,54.4,12.6

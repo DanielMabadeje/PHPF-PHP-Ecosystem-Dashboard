@@ -1,0 +1,31 @@
+source,year,php_questions,total_questions,reported_share_pct,partial_period
+Stack Exchange Data Explorer,2008,2199,57130,3.85,yes
+Stack Exchange Data Explorer,2009,20097,340198,5.91,no
+Stack Exchange Data Explorer,2010,51028,688387,7.41,no
+Stack Exchange Data Explorer,2011,94694,1180070,8.02,no
+Stack Exchange Data Explorer,2012,129388,1611912,8.03,no
+Stack Exchange Data Explorer,2013,164270,2016317,8.15,no
+Stack Exchange Data Explorer,2014,174184,2113625,8.24,no
+Stack Exchange Data Explorer,2015,168177,2175904,7.73,no
+Stack Exchange Data Explorer,2016,159222,2183546,7.29,no
+Stack Exchange Data Explorer,2017,139517,2099706,6.64,no
+Stack Exchange Data Explorer,2018,101316,1875948,5.4,no
+Stack Exchange Data Explorer,2019,77401,1755795,4.41,no
+Stack Exchange Data Explorer,2020,65602,1855148,3.54,no
+Stack Exchange Data Explorer,2021,48030,1534384,3.13,no
+Stack Exchange Data Explorer,2022,35855,1335966,2.68,no
+Stack Exchange Data Explorer,2023,18568,787982,2.36,no
+Stack Exchange Data Explorer,2024,9101,398519,2.28,no
+Stack Exchange Data Explorer,2025,2145,110475,1.94,no
+Stack Exchange Data Explorer,2026,334,19617,1.7,yes
+BigQuery snapshot,2012,131256,1629386,8.06,no
+BigQuery snapshot,2013,165948,2033690,8.16,no
+BigQuery snapshot,2014,176717,2137435,8.27,no
+BigQuery snapshot,2015,170146,2196676,7.75,no
+BigQuery snapshot,2016,160796,2200802,7.31,no
+BigQuery snapshot,2017,140930,2116212,6.66,no
+BigQuery snapshot,2018,101917,1888989,5.39,no
+BigQuery snapshot,2019,77653,1766933,4.39,no
+BigQuery snapshot,2020,66049,1871695,3.53,no
+BigQuery snapshot,2021,50143,1629580,3.08,no
+BigQuery snapshot,2022,34346,1268788,2.71,yes

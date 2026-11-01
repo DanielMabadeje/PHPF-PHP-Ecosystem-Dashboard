@@ -1,0 +1,16 @@
+licence,family,php_main_language_repos,reported_share_pct,contains_any_php_repos
+MIT,permissive,113607,47.88,161595
+GPL-2.0,copyleft,54461,22.95,69079
+GPL-3.0,copyleft,24678,10.4,35887
+BSD-3-Clause,permissive,16875,7.11,22778
+Apache-2.0,permissive,13485,5.68,29306
+AGPL-3.0,copyleft,4096,1.73,6106
+LGPL-3.0,copyleft,3188,1.34,4193
+BSD-2-Clause,permissive,2150,0.91,3052
+Unlicense,permissive,1644,0.69,2295
+LGPL-2.1,copyleft,1420,0.6,2132
+MPL-2.0,copyleft,563,0.24,1034
+CC0-1.0,permissive,509,0.21,918
+ISC,permissive,358,0.15,544
+Artistic-2.0,copyleft,158,0.07,277
+EPL-1.0,copyleft,82,0.03,230

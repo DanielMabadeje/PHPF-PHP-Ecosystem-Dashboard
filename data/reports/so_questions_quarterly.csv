@@ -1,0 +1,117 @@
+source,year,quarter,quarter_start,php_questions,total_questions,reported_share_pct,partial_period
+Stack Exchange Data Explorer,2008,3,2008-07-01,628,17771,3.53,no
+Stack Exchange Data Explorer,2008,4,2008-10-01,1571,39359,3.99,no
+Stack Exchange Data Explorer,2009,1,2009-01-01,2257,53874,4.19,no
+Stack Exchange Data Explorer,2009,2,2009-04-01,3665,75456,4.86,no
+Stack Exchange Data Explorer,2009,3,2009-07-01,6395,98271,6.51,no
+Stack Exchange Data Explorer,2009,4,2009-10-01,7780,112597,6.91,no
+Stack Exchange Data Explorer,2010,1,2010-01-01,10238,141947,7.21,no
+Stack Exchange Data Explorer,2010,2,2010-04-01,11629,157794,7.37,no
+Stack Exchange Data Explorer,2010,3,2010-07-01,14300,185671,7.7,no
+Stack Exchange Data Explorer,2010,4,2010-10-01,14861,202975,7.32,no
+Stack Exchange Data Explorer,2011,1,2011-01-01,21032,263740,7.97,no
+Stack Exchange Data Explorer,2011,2,2011-04-01,23545,294743,7.99,no
+Stack Exchange Data Explorer,2011,3,2011-07-01,25350,309008,8.2,no
+Stack Exchange Data Explorer,2011,4,2011-10-01,24767,312579,7.92,no
+Stack Exchange Data Explorer,2012,1,2012-01-01,29619,371602,7.97,no
+Stack Exchange Data Explorer,2012,2,2012-04-01,31364,391724,8.01,no
+Stack Exchange Data Explorer,2012,3,2012-07-01,34154,415285,8.22,no
+Stack Exchange Data Explorer,2012,4,2012-10-01,34251,433301,7.9,no
+Stack Exchange Data Explorer,2013,1,2013-01-01,39173,484548,8.08,no
+Stack Exchange Data Explorer,2013,2,2013-04-01,38784,495722,7.82,no
+Stack Exchange Data Explorer,2013,3,2013-07-01,42354,511523,8.28,no
+Stack Exchange Data Explorer,2013,4,2013-10-01,43959,524524,8.38,no
+Stack Exchange Data Explorer,2014,1,2014-01-01,50896,583142,8.73,no
+Stack Exchange Data Explorer,2014,2,2014-04-01,44652,531152,8.41,no
+Stack Exchange Data Explorer,2014,3,2014-07-01,40225,505171,7.96,no
+Stack Exchange Data Explorer,2014,4,2014-10-01,38411,494160,7.77,no
+Stack Exchange Data Explorer,2015,1,2015-01-01,41588,523490,7.94,no
+Stack Exchange Data Explorer,2015,2,2015-04-01,43396,562491,7.71,no
+Stack Exchange Data Explorer,2015,3,2015-07-01,42689,553847,7.71,no
+Stack Exchange Data Explorer,2015,4,2015-10-01,40504,536076,7.56,no
+Stack Exchange Data Explorer,2016,1,2016-01-01,44086,570607,7.73,no
+Stack Exchange Data Explorer,2016,2,2016-04-01,42128,570235,7.39,no
+Stack Exchange Data Explorer,2016,3,2016-07-01,37635,530067,7.1,no
+Stack Exchange Data Explorer,2016,4,2016-10-01,35373,512637,6.9,no
+Stack Exchange Data Explorer,2017,1,2017-01-01,38761,553469,7.0,no
+Stack Exchange Data Explorer,2017,2,2017-04-01,36806,542909,6.78,no
+Stack Exchange Data Explorer,2017,3,2017-07-01,33773,519696,6.5,no
+Stack Exchange Data Explorer,2017,4,2017-10-01,30177,483632,6.24,no
+Stack Exchange Data Explorer,2018,1,2018-01-01,28814,486414,5.92,no
+Stack Exchange Data Explorer,2018,2,2018-04-01,26590,484374,5.49,no
+Stack Exchange Data Explorer,2018,3,2018-07-01,24591,462889,5.31,no
+Stack Exchange Data Explorer,2018,4,2018-10-01,21321,442271,4.82,no
+Stack Exchange Data Explorer,2019,1,2019-01-01,22093,456918,4.84,no
+Stack Exchange Data Explorer,2019,2,2019-04-01,20043,440624,4.55,no
+Stack Exchange Data Explorer,2019,3,2019-07-01,17960,424916,4.23,no
+Stack Exchange Data Explorer,2019,4,2019-10-01,17305,433337,3.99,no
+Stack Exchange Data Explorer,2020,1,2020-01-01,17119,447530,3.83,no
+Stack Exchange Data Explorer,2020,2,2020-04-01,18960,541085,3.5,no
+Stack Exchange Data Explorer,2020,3,2020-07-01,15612,456001,3.42,no
+Stack Exchange Data Explorer,2020,4,2020-10-01,13911,410532,3.39,no
+Stack Exchange Data Explorer,2021,1,2021-01-01,13823,420181,3.29,no
+Stack Exchange Data Explorer,2021,2,2021-04-01,12576,398521,3.16,no
+Stack Exchange Data Explorer,2021,3,2021-07-01,11394,365725,3.12,no
+Stack Exchange Data Explorer,2021,4,2021-10-01,10237,349957,2.93,no
+Stack Exchange Data Explorer,2022,1,2022-01-01,9527,356351,2.67,no
+Stack Exchange Data Explorer,2022,2,2022-04-01,9615,341286,2.82,no
+Stack Exchange Data Explorer,2022,3,2022-07-01,8927,326929,2.73,no
+Stack Exchange Data Explorer,2022,4,2022-10-01,7786,311400,2.5,no
+Stack Exchange Data Explorer,2023,1,2023-01-01,6348,269451,2.36,no
+Stack Exchange Data Explorer,2023,2,2023-04-01,4655,198332,2.35,no
+Stack Exchange Data Explorer,2023,3,2023-07-01,4250,175261,2.42,no
+Stack Exchange Data Explorer,2023,4,2023-10-01,3315,144938,2.29,no
+Stack Exchange Data Explorer,2024,1,2024-01-01,3257,138251,2.36,no
+Stack Exchange Data Explorer,2024,2,2024-04-01,2621,114361,2.29,no
+Stack Exchange Data Explorer,2024,3,2024-07-01,1848,83986,2.2,no
+Stack Exchange Data Explorer,2024,4,2024-10-01,1375,61921,2.22,no
+Stack Exchange Data Explorer,2025,1,2025-01-01,1034,48791,2.12,no
+Stack Exchange Data Explorer,2025,2,2025-04-01,572,28807,1.99,no
+Stack Exchange Data Explorer,2025,3,2025-07-01,288,17943,1.61,no
+Stack Exchange Data Explorer,2025,4,2025-10-01,251,14934,1.68,no
+Stack Exchange Data Explorer,2026,1,2026-01-01,160,10098,1.58,no
+Stack Exchange Data Explorer,2026,2,2026-04-01,127,6859,1.85,no
+Stack Exchange Data Explorer,2026,3,2026-07-01,47,2660,1.77,yes
+BigQuery snapshot,2012,1,2012-01-01,30153,376853,8.0,no
+BigQuery snapshot,2012,2,2012-04-01,31925,397370,8.03,no
+BigQuery snapshot,2012,3,2012-07-01,34599,418704,8.26,no
+BigQuery snapshot,2012,4,2012-10-01,34579,436459,7.92,no
+BigQuery snapshot,2013,1,2013-01-01,39453,487682,8.09,no
+BigQuery snapshot,2013,2,2013-04-01,39119,499706,7.83,no
+BigQuery snapshot,2013,3,2013-07-01,42801,516364,8.29,no
+BigQuery snapshot,2013,4,2013-10-01,44575,529938,8.41,no
+BigQuery snapshot,2014,1,2014-01-01,51559,588822,8.76,no
+BigQuery snapshot,2014,2,2014-04-01,45358,537546,8.44,no
+BigQuery snapshot,2014,3,2014-07-01,40840,511556,7.98,no
+BigQuery snapshot,2014,4,2014-10-01,38960,499511,7.8,no
+BigQuery snapshot,2015,1,2015-01-01,42045,528559,7.95,no
+BigQuery snapshot,2015,2,2015-04-01,43935,568055,7.73,no
+BigQuery snapshot,2015,3,2015-07-01,43152,558809,7.72,no
+BigQuery snapshot,2015,4,2015-10-01,41014,541253,7.58,no
+BigQuery snapshot,2016,1,2016-01-01,44647,575649,7.76,no
+BigQuery snapshot,2016,2,2016-04-01,42547,574969,7.4,no
+BigQuery snapshot,2016,3,2016-07-01,37927,533886,7.1,no
+BigQuery snapshot,2016,4,2016-10-01,35675,516298,6.91,no
+BigQuery snapshot,2017,1,2017-01-01,39153,557366,7.02,no
+BigQuery snapshot,2017,2,2017-04-01,37172,547215,6.79,no
+BigQuery snapshot,2017,3,2017-07-01,34081,523400,6.51,no
+BigQuery snapshot,2017,4,2017-10-01,30524,488231,6.25,no
+BigQuery snapshot,2018,1,2018-01-01,29043,490342,5.92,no
+BigQuery snapshot,2018,2,2018-04-01,26806,488334,5.49,no
+BigQuery snapshot,2018,3,2018-07-01,24653,465469,5.3,no
+BigQuery snapshot,2018,4,2018-10-01,21415,444844,4.81,no
+BigQuery snapshot,2019,1,2019-01-01,22210,459576,4.83,no
+BigQuery snapshot,2019,2,2019-04-01,20086,443263,4.53,no
+BigQuery snapshot,2019,3,2019-07-01,18013,427610,4.21,no
+BigQuery snapshot,2019,4,2019-10-01,17344,436484,3.97,no
+BigQuery snapshot,2020,1,2020-01-01,17224,451332,3.82,no
+BigQuery snapshot,2020,2,2020-04-01,19091,545781,3.5,no
+BigQuery snapshot,2020,3,2020-07-01,15714,459909,3.42,no
+BigQuery snapshot,2020,4,2020-10-01,14020,414673,3.38,no
+BigQuery snapshot,2021,1,2021-01-01,13902,424970,3.27,no
+BigQuery snapshot,2021,2,2021-04-01,12678,403943,3.14,no
+BigQuery snapshot,2021,3,2021-07-01,11620,376487,3.09,no
+BigQuery snapshot,2021,4,2021-10-01,11943,424180,2.82,no
+BigQuery snapshot,2022,1,2022-01-01,11412,436766,2.61,no
+BigQuery snapshot,2022,2,2022-04-01,11673,427400,2.73,no
+BigQuery snapshot,2022,3,2022-07-01,11261,404622,2.78,no

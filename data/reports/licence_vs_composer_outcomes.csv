@@ -1,0 +1,6 @@
+outcome,reported_share_pct
+the two sources agree,38.0
+they disagree,2.2
+no composer.json at all,48.2
+composer.json with no license key,10.7
+"composer.json declaring free text, not SPDX",0.8

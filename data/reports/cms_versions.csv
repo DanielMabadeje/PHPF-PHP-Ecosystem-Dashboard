@@ -1,0 +1,42 @@
+crawl_date,technology,version_group,sites,share_pct,share_basis,support_status
+2025-07-01,WordPress,6.8,2249343,65.07,versioned,Current release
+2025-07-01,WordPress,6.7,337957,9.78,versioned,
+2025-07-01,WordPress,6.6,145590,4.21,versioned,
+2025-07-01,WordPress,6.5,99619,2.88,versioned,
+2025-07-01,WordPress,6.4,99084,2.87,versioned,
+2025-07-01,WordPress,rest of 6.x,207907,6.02,versioned,
+2025-07-01,WordPress,5.x,233664,6.76,versioned,
+2025-07-01,WordPress,4.x,77626,2.25,versioned,
+2025-07-01,WordPress,3.x and older,5657,0.16,versioned,
+2025-07-01,WordPress,Version not identified,1929969,35.83,detected,
+2025-07-01,Drupal,10,58721,44.20,versioned,Supported
+2025-07-01,Drupal,7,37044,27.88,versioned,End of life
+2025-07-01,Drupal,9,17402,13.10,versioned,End of life
+2025-07-01,Drupal,8,13496,10.16,versioned,End of life
+2025-07-01,Drupal,11,6177,4.65,versioned,Supported
+2025-07-01,Drupal,1,15,0.01,versioned,Invalid reading
+2025-07-01,Drupal,Version not identified,30709,18.77,detected,
+2025-07-01,Magento,2,33798,95.76,versioned,Supported
+2025-07-01,Magento,1,1496,4.24,versioned,End of life
+2025-07-01,Magento,Version not identified,16642,32.04,detected,
+2026-07-01,WordPress,7.0,1933861,59.84,versioned,Current release
+2026-07-01,WordPress,6.9,499119,15.44,versioned,
+2026-07-01,WordPress,6.8,242382,7.50,versioned,
+2026-07-01,WordPress,6.7,101529,3.14,versioned,
+2026-07-01,WordPress,6.6,58443,1.81,versioned,
+2026-07-01,WordPress,rest of 6.x,202858,6.28,versioned,
+2026-07-01,WordPress,5.x,137122,4.24,versioned,
+2026-07-01,WordPress,4.x,52355,1.62,versioned,
+2026-07-01,WordPress,3.x and older,3907,0.12,versioned,
+2026-07-01,WordPress,rest of 7.x,180,0.01,versioned,
+2026-07-01,WordPress,Version not identified,1858956,36.52,detected,
+2026-07-01,Drupal,10,47725,39.82,versioned,Supported
+2026-07-01,Drupal,7,26092,21.77,versioned,End of life
+2026-07-01,Drupal,11,24709,20.62,versioned,Supported
+2026-07-01,Drupal,9,11585,9.67,versioned,End of life
+2026-07-01,Drupal,8,9711,8.10,versioned,End of life
+2026-07-01,Drupal,other readings,18,0.02,versioned,Invalid reading
+2026-07-01,Drupal,Version not identified,25998,17.83,detected,
+2026-07-01,Magento,2,27573,95.42,versioned,Supported
+2026-07-01,Magento,1,1322,4.58,versioned,End of life
+2026-07-01,Magento,Version not identified,15447,34.84,detected,

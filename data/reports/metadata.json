@@ -1,0 +1,99 @@
+{
+  "cms_version_coverage.csv": {
+    "extraction": "https://github.com/ThePHPF/SIG-ambassadors/blob/9585e1ae44816aec066f38a7f72d261a0e5099b2/subgroup-research/raw-data/extractions/httparchive-cms-versions.md",
+    "imported_on": "transcribed by hand by the dashboard author; not covered by import_report_tables.py (source reports were not in the checkout)",
+    "note": "how many detected sites exposed a version",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, pinned commit 9585e1ae44816aec066f38a7f72d261a0e5099b2",
+    "sig_ambassadors_commit": "9585e1ae44816aec066f38a7f72d261a0e5099b2",
+    "source_file": "reports/cms-versions.md and reports/cms-versions-2026.md"
+  },
+  "cms_versions.csv": {
+    "extraction": "https://github.com/ThePHPF/SIG-ambassadors/blob/9585e1ae44816aec066f38a7f72d261a0e5099b2/subgroup-research/raw-data/extractions/httparchive-cms-versions.md",
+    "imported_on": "transcribed by hand by the dashboard author; not covered by import_report_tables.py (source reports were not in the checkout)",
+    "note": "version groups per application and crawl, with support status",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, pinned commit 9585e1ae44816aec066f38a7f72d261a0e5099b2",
+    "sig_ambassadors_commit": "9585e1ae44816aec066f38a7f72d261a0e5099b2",
+    "source_file": "reports/cms-versions.md and reports/cms-versions-2026.md"
+  },
+  "composer_adoption.csv": {
+    "imported_on": "2026-10-30",
+    "note": "",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/composer-adoption.md",
+    "rows": 7,
+    "section": "Results",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/composer-adoption.md"
+  },
+  "licence_vs_composer_by_licence.csv": {
+    "imported_on": "2026-10-30",
+    "note": "weighted total row dropped",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/licence-file-vs-composer.md",
+    "rows": 15,
+    "section": "By licence",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/licence-file-vs-composer.md"
+  },
+  "licence_vs_composer_by_stars.csv": {
+    "imported_on": "2026-10-30",
+    "note": "",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/licence-file-vs-composer.md",
+    "rows": 4,
+    "section": "By popularity",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/licence-file-vs-composer.md"
+  },
+  "licence_vs_composer_outcomes.csv": {
+    "imported_on": "2026-10-30",
+    "note": "",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/licence-file-vs-composer.md",
+    "rows": 5,
+    "section": "The answer",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/licence-file-vs-composer.md"
+  },
+  "php_licence_families.csv": {
+    "imported_on": "2026-10-30",
+    "note": "",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-licences.md",
+    "rows": 2,
+    "section": "Families",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/php-licences.md"
+  },
+  "php_licences.csv": {
+    "imported_on": "2026-10-30",
+    "note": "family follows the report's definition (permissive list in the extraction)",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-licences.md",
+    "rows": 15,
+    "section": "Every licence",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/php-licences.md"
+  },
+  "so_questions_quarterly.csv": {
+    "imported_on": "2026-10-30",
+    "note": "two sources; they diverge after 2021 Q3",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-share-of-stackoverflow.md",
+    "rows": 116,
+    "section": "By quarter (both tables)",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/php-share-of-stackoverflow.md"
+  },
+  "so_questions_yearly.csv": {
+    "imported_on": "2026-10-30",
+    "note": "",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-share-of-stackoverflow.md",
+    "rows": 30,
+    "section": "By year (both tables)",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/php-share-of-stackoverflow.md"
+  },
+  "top_long_running_php.csv": {
+    "imported_on": "2026-10-30",
+    "note": "",
+    "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/top-long-running-php.md",
+    "rows": 100,
+    "section": "The first hundred (+ descriptions from 'The ten')",
+    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "source_file": "reports/top-long-running-php.md"
+  }
+}

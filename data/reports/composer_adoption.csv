@@ -1,0 +1,8 @@
+metric,repositories,reported_share_pct,reported_share_of,meaning
+PHP repositories (total),339426,100,of total,"Every repo Linguist tags as containing PHP, including those where PHP is a minor part of the codebase"
+Ships a composer.json,159237,46.91,of total,"Declares its own manifest somewhere outside vendor/, the project participates in the Composer ecosystem"
+No composer.json,180189,53.09,of total,No manifest of its own anywhere in the tree
+Manifest at repository root,142299,89.36,of Composer users,The conventional layout: composer.json sits next to the README
+Manifest outside the root,16938,10.64,of Composer users,"Manifest lives in a subdirectory. Deliberate in monorepos, accidental in projects whose PHP code is buried under src/, api/ or web/"
+vendor/ committed to Git,17443,10.95,of Composer users,Dependencies checked into version control instead of being installed from the lock file
+"vendor/ committed, no manifest",2067,1.15,of repos without a manifest,"Dependencies committed without the file that describes them, these repos use the ecosystem but are invisible to any manifest-based search"
