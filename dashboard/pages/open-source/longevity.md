@@ -1,7 +1,7 @@
 ---
 title: Long-running PHP projects
 sidebar_position: 4
-sidebar_badge: report
+sidebar_badge: snapshot
 ---
 
 **The question:** which public PHP projects have been running the longest and are still being maintained?
@@ -23,6 +23,20 @@ order by rank
 select rank, project, url, stars, started, months_running, what_it_is
 from ${projects}
 where rank <= 10
+order by rank
+```
+
+```sql score_example
+select
+  rank,
+  project,
+  stars,
+  months_running,
+  round(log10(stars), 2) as log10_stars,
+  round(months_running * log10(stars), 0) as recomputed,
+  score
+from ${projects}
+where rank <= 5
 order by rank
 ```
 
@@ -60,8 +74,46 @@ order by projects desc
   <Column id=what_it_is title="What it is" />
 </DataTable>
 
-The ranking multiplies how long a project has been running by the logarithm of its stars. A project that began in 2001 with a modest following can therefore outrank one that began in 2021 with a huge one.
-Only projects with at least 1,000 stars, a push in the last 12 months, and no archive flag are considered.
+## How the score works
+
+**Score = months running × log₁₀(stars).** Two things go in:
+
+- **Months running** is how long the project has existed, counted from its start date to the day the data was collected. It counts linearly: a project twice as old scores twice as much.
+- **log₁₀(stars)** turns the star count into a small weight. It is roughly the number of digits: 1,000 stars gives 3, 10,000 gives 4, 100,000 gives 5.
+  So ten times the stars multiplies a project's score by only 4/3, and a hundred times the stars by 5/3.
+
+In the top hundred the stars range from about 1,100 to 74,000, so the star weight stays between about 3 and 4.9 and **age does most of the sorting**. Stars act as a modest
+tie-breaker that lets a widely followed project edge ahead of an equally old, less followed one.
+
+<DataTable data={score_example}>
+  <Column id=rank title="#" />
+  <Column id=project title="Project" />
+  <Column id=months_running title="Months running" fmt=num0 />
+  <Column id=stars title="Stars" fmt=num0 />
+  <Column id=log10_stars title="log₁₀(stars)" fmt=num2 />
+  <Column id=recomputed title="Months × log₁₀(stars)" fmt=num0 />
+  <Column id=score title="Published score" fmt=num0 />
+</DataTable>
+
+The recomputed column uses the whole months shown in the table, so it can differ from the published score by a few points because of rounding.
+
+**Who is in the ranking.** Only public PHP repositories with at least 1,000 stars, a push within the last 12 months, and no archive flag. Anything else is not scored at all.
+
+**Why a logarithm.** Stars alone would put a young, hyped project above a long-running one, and age alone would put an old, abandoned one first. The report multiplies the two and
+takes the logarithm of the stars so that a project with ten times the stars does not simply score ten times as much.
+
+**What the score does not measure.** It does not measure how widely a project is installed, how actively it is developed, or how important it is. It is a way to order
+projects that have lasted and are still noticed.
+
+## What the columns mean
+
+- **Stars:** GitHub stars when the data was collected. A measure of attention, not use.
+- **Started:** the project's start date, to the month.
+- **Date from:** where that date comes from. `commit` is the project's first commit in the BigQuery commit history, which can reach back before GitHub existed. `GitHub` is the date the repository
+  was created on GitHub, used when the commit history has nothing for the project.
+- **Months:** months from the start date to the collection date.
+- **Last push:** the month of the most recent push. Every project in the list was pushed in the last 12 months.
+- **Score:** as above.
 
 ## When were they started?
 

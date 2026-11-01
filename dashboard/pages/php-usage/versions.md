@@ -1,7 +1,7 @@
 ---
 title: CMS versions
 sidebar_position: 3
-sidebar_badge: report
+sidebar_badge: snapshot
 ---
 
 Do public websites still run forgotten, long-outdated PHP applications? The HTTP Archive can sometimes read a CMS version from a

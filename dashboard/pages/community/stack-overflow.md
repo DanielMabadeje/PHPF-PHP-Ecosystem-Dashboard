@@ -1,7 +1,7 @@
 ---
 title: Stack Overflow questions
 sidebar_position: 1
-sidebar_badge: report
+sidebar_badge: snapshot
 ---
 
 **The question:** what share of all Stack Overflow questions are about PHP, and how has that changed since the site opened in 2008?

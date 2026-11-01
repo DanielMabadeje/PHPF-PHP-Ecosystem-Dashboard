@@ -8,7 +8,7 @@ It is built for the PHP Foundation SIG research effort. The pages come from two 
 
 - **Refreshed pages** (platforms, families) come from SQL queries kept in the
   [project repository](https://github.com/DanielMabadeje/PHPF-PHP-Ecosystem-Dashboard), run against named crawl dates.
-- **Report pages** (marked `report` in the sidebar) show published results from SIG studies. The studies were run by their authors and
+- **Snapshot pages** (marked `snapshot` in the sidebar) show published results from SIG studies. The studies were run by their authors and
   are not refreshed by this project's query runner.
 
 Nothing is computed when you open a page, so the numbers are the same for everyone.
@@ -21,6 +21,11 @@ Nothing is computed when you open a page, so the numbers are the same for everyo
 - [Open source on GitHub](/open-source): Composer adoption, licences, how often a LICENSE file and `composer.json` agree, and the longest-running PHP projects.
 - [Developer community](/community): PHP's share of Stack Overflow questions over time.
 - [Glossary](/glossary): what "flagged as PHP", "named application", "crawl" and the other terms mean, with a worked example.
+
+## What the sidebar labels mean
+
+Pages marked **snapshot** show a fixed set of published numbers from a SIG research report, not something this dashboard recomputes. The date and source of each snapshot are at the top of its page.
+The label is green only because that is Evidence's default colour for sidebar labels; the colour does not mean the numbers are verified or approved.
 
 ## How to read the charts
 

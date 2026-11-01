@@ -16,84 +16,84 @@
     "source_file": "reports/cms-versions.md and reports/cms-versions-2026.md"
   },
   "composer_adoption.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/composer-adoption.md",
     "rows": 7,
     "section": "Results",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/composer-adoption.md"
   },
   "licence_vs_composer_by_licence.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "weighted total row dropped",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/licence-file-vs-composer.md",
     "rows": 15,
     "section": "By licence",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/licence-file-vs-composer.md"
   },
   "licence_vs_composer_by_stars.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/licence-file-vs-composer.md",
     "rows": 4,
     "section": "By popularity",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/licence-file-vs-composer.md"
   },
   "licence_vs_composer_outcomes.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/licence-file-vs-composer.md",
     "rows": 5,
     "section": "The answer",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/licence-file-vs-composer.md"
   },
   "php_licence_families.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-licences.md",
     "rows": 2,
     "section": "Families",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/php-licences.md"
   },
   "php_licences.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "family follows the report's definition (permissive list in the extraction)",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-licences.md",
     "rows": 15,
     "section": "Every licence",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/php-licences.md"
   },
   "so_questions_quarterly.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "two sources; they diverge after 2021 Q3",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-share-of-stackoverflow.md",
     "rows": 116,
     "section": "By quarter (both tables)",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/php-share-of-stackoverflow.md"
   },
   "so_questions_yearly.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/php-share-of-stackoverflow.md",
     "rows": 30,
     "section": "By year (both tables)",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/php-share-of-stackoverflow.md"
   },
   "top_long_running_php.csv": {
-    "imported_on": "2026-10-30",
+    "imported_on": "2026-11-01",
     "note": "",
     "origin": "ThePHPF/SIG-ambassadors PR #40, subgroup-research/reports/top-long-running-php.md",
     "rows": 100,
     "section": "The first hundred (+ descriptions from 'The ten')",
-    "sig_ambassadors_commit": "zip-sig-pr-40_1 (commit not recorded)",
+    "sig_ambassadors_commit": "unrecorded",
     "source_file": "reports/top-long-running-php.md"
   }
 }

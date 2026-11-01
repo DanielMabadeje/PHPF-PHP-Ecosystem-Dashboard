@@ -1,7 +1,7 @@
 ---
 title: Composer adoption
 sidebar_position: 1
-sidebar_badge: report
+sidebar_badge: snapshot
 ---
 
 **The question:** of the public repositories that contain PHP, how many take part in the Composer ecosystem, and how do they lay their projects out?

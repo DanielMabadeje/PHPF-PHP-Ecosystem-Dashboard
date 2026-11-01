@@ -1,7 +1,7 @@
 ---
 title: Licences
 sidebar_position: 2
-sidebar_badge: report
+sidebar_badge: snapshot
 ---
 
 **The question:** under what terms is PHP published, and can a company pick a PHP library off the shelf without calling a lawyer?

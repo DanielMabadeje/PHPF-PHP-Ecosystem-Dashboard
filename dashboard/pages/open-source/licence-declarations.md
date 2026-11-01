@@ -1,7 +1,7 @@
 ---
 title: LICENSE file vs composer.json
 sidebar_position: 3
-sidebar_badge: report
+sidebar_badge: snapshot
 ---
 
 **The question:** a PHP project can state its licence in two places. GitHub reads the licence file; Packagist reads the `license` key in `composer.json`.
@@ -35,10 +35,10 @@ order by band_rank
 ```
 
 ```sql by_stars_long
-select band, band_rank, 'Both name the same licence family' as outcome, 1 as o, agree_pct as pct from ${by_stars}
-union all select band, band_rank, 'Both name a licence, but different families', 2, disagree_pct from ${by_stars}
-union all select band, band_rank, 'No composer.json (not a Composer package)', 3, no_composer_json_pct from ${by_stars}
-union all select band, band_rank, 'composer.json has no license key', 4, no_license_key_pct from ${by_stars}
+select band, band_rank, 'Agree (same family)' as outcome, 1 as o, agree_pct as pct from ${by_stars}
+union all select band, band_rank, 'Disagree (different families)', 2, disagree_pct from ${by_stars}
+union all select band, band_rank, 'No composer.json', 3, no_composer_json_pct from ${by_stars}
+union all select band, band_rank, 'No license key', 4, no_license_key_pct from ${by_stars}
 order by band_rank, o
 ```
 
@@ -50,11 +50,11 @@ order by population desc
 ```
 
 ```sql by_licence_long
-select licence, population, 'Both name the same licence family' as outcome, 1 as o, agree_pct as pct from ${by_licence}
-union all select licence, population, 'Both name a licence, but different families', 2, disagree_pct from ${by_licence}
-union all select licence, population, 'No composer.json (not a Composer package)', 3, no_composer_json_pct from ${by_licence}
-union all select licence, population, 'composer.json has no license key', 4, no_license_key_pct from ${by_licence}
-union all select licence, population, 'License is free text, not an SPDX identifier', 5, not_spdx_pct from ${by_licence}
+select licence, population, 'Agree (same family)' as outcome, 1 as o, agree_pct as pct from ${by_licence}
+union all select licence, population, 'Disagree (different families)', 2, disagree_pct from ${by_licence}
+union all select licence, population, 'No composer.json', 3, no_composer_json_pct from ${by_licence}
+union all select licence, population, 'No license key', 4, no_license_key_pct from ${by_licence}
+union all select licence, population, 'Free text (not SPDX)', 5, not_spdx_pct from ${by_licence}
 order by population desc, o
 ```
 
@@ -116,6 +116,7 @@ among projects with no stars, a large share of the packages that exist declare n
   series=outcome
   type=stacked100
   sort=false
+  showAllXAxisLabels=true
   yAxisTitle="% of repositories with that licence"
   title="Outcome by licence on GitHub"
 />
@@ -130,6 +131,10 @@ among projects with no stars, a large share of the packages that exist declare n
   <Column id=no_license_key_pct title="No license key (%)" fmt=num1 />
   <Column id=not_spdx_pct title="Not SPDX (%)" fmt=num1 />
 </DataTable>
+
+**What the columns mean.** *Population* is the number of repositories with that licence on GitHub. *Sampled* is how many of them the study actually examined (up to 100 per star band).
+The percentages are estimates for the whole population, weighted by how many repositories fall in each star band, so a small sample in a large band counts for more.
+*Agree* and *Disagree* describe projects where both the licence file and `composer.json` name a licence; the other columns say why a project could not be compared.
 
 ## Read with care
 

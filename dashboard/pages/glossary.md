@@ -114,7 +114,8 @@ Those are "identified". Sites that hide it are "not identified". Not identified 
 
 **End of life (EOL).** A release that no longer receives security fixes from its maintainers. The version pages use the status given in the published reports.
 
-**Report snapshot.** A table copied from a published SIG research report. The dashboard's query runner does not refresh these; each page names the report it comes from.
+**Report snapshot, and the `snapshot` label.** A table copied from a published SIG research report. The dashboard's query runner does not refresh these; each page names the report it comes from
+and the date it was imported. Pages built from them carry a `snapshot` label in the sidebar. The label is green because Evidence draws every sidebar label in green; the colour does not mean the numbers are verified.
 
 **Composer, `composer.json`, manifest.** Composer is PHP's dependency manager. A project describes itself and its dependencies in a file called `composer.json`, often called its manifest.
 Packages are published through Packagist.
@@ -131,3 +132,21 @@ require that changes or combined works carry the same freedoms.
 A repository can contain PHP without PHP being its main language.
 
 **Stack Exchange Data Explorer (SEDE).** A public tool for querying Stack Exchange data, refreshed weekly. The Stack Overflow page uses it as its main source.
+
+**Stars.** GitHub stars: how many accounts have bookmarked a repository. A measure of attention, not of how widely the code is installed.
+
+**Score (long-running projects).** The ranking value on the long-running projects page: **months running × log₁₀(stars)**. Age counts linearly, and stars count through a logarithm (1,000 stars is 3, 10,000 is 4, 100,000 is 5),
+so age does most of the sorting. See [the page](/open-source/longevity) for a worked example.
+
+**Months running, "Date from".** Months from a project's start date to the day the data was collected. The start date is the project's first commit in the BigQuery commit history when that is available (`commit`),
+which can reach back before GitHub existed, and otherwise the date the repository was created on GitHub (`GitHub`).
+
+**Last push.** The month of the most recent push to the repository. A push is not necessarily development: automated updates also count.
+
+**Population, sample, weighted estimate.** The *population* is every repository the study could in principle have looked at; the *sample* is the smaller number it actually examined.
+A *weighted estimate* scales each part of the sample up to the size of the part of the population it stands for, so a large group (for example, repositories with no stars) counts for more than a small one.
+Estimates from a sample carry sampling error, and small groups carry more of it.
+
+**Agree, disagree (licences).** For a project that names a licence both in its licence file and in `composer.json`, *agree* means both name the same licence family and *disagree* means they name different families.
+Projects that cannot be compared (no `composer.json`, or no licence in it) are counted separately. "Family" ignores version, so GPL-2.0 and GPL-3.0 count as the same family.
+
